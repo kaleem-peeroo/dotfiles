@@ -17,10 +17,11 @@ vim.opt.titlestring = '%t'
 
 -- Indentation and Formatting Settings
 vim.opt.autoindent = true
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
 vim.opt.smarttab = true
-vim.opt.tabstop = 4
+vim.opt.tabstop = 2
+-- vim.opt.iskeyword = '_'
 
 -- Display Settings
 vim.opt.cursorline = true
@@ -29,10 +30,10 @@ vim.opt.mouse = 'a'
 vim.opt.showcmd = true
 vim.opt.timeoutlen = 300
 vim.opt.wildmenu = true
-vim.opt.wrap = false
+vim.opt.wrap = true
 vim.opt.completeopt = 'menu,menuone,noselect'
 vim.opt.updatetime = 50
-vim.opt.scrolloff = 5
+vim.opt.scrolloff = 1
 vim.opt.signcolumn = 'yes'
 
 -- List and Match Settings
@@ -54,10 +55,17 @@ vim.opt.smartindent = true
 
 -- Line Number Settings
 vim.opt.number = true
+vim.opt.relativenumber = true
 
 -- nvim-tree options
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+-- folding options
+vim.opt.foldcolumn = '1'
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
 
 --0=========================================================================0
 -- █▀█ █▀▀ █▀▄▀█ ▄▀█ █▀█ █▀
@@ -67,6 +75,9 @@ vim.g.loaded_netrwPlugin = 1
 -- Search centering
 remap('n', 'n', 'nzz')
 remap('n', 'N', 'Nzz')
+-- Remove search highlighting
+remap('i', '<Esc>', '<Esc>:noh<CR>')
+remap('n', '<Esc>', '<Esc>:noh<CR>')
 -- Deleting to the void
 remap('n', 'x', '"_x')
 remap('v', 'x', '"_x')
@@ -82,7 +93,7 @@ remap('v', '<C-j>', '<S-Down>zz')
 remap('n', '<C-s>', ':w<CR>')
 remap('i', '<C-s>', '<Esc>:w<CR>')
 remap('v', '<C-s>', '<Esc>:w<CR>')
--- Move selected lines with alt arrows like in subl
+-- Move selected lines with alt arrows
 remap('v', '<A-k>', ":m '<-2<CR>gv=gv")
 remap('v', '<A-j>', ":m '>+1<CR>gv=gv")
 remap('n', '<A-k>', ':m .-2<cr>==')
@@ -101,8 +112,8 @@ remap('t', '<leader>j', '<Cmd>wincmd j<CR>')
 remap('t', '<leader>k', '<Cmd>wincmd k<CR>')
 remap('t', '<leader>l', '<Cmd>wincmd l<CR>')
 -- Resize splits
-remap('n', '<S-Left>', '<Cmd>vertical resize -2<CR>')
-remap('n', '<S-Right>', '<Cmd>vertical resize +2<CR>')
+remap('n', '<S-Left>', '<Cmd>vertical resize +2<CR>')
+remap('n', '<S-Right>', '<Cmd>vertical resize -2<CR>')
 remap('n', '<S-Up>', '<Cmd>resize -2<CR>')
 remap('n', '<S-Down>', '<Cmd>resize +2<CR>')
 -- Indent/Unindent selected text with Tab and Shift+Tab
@@ -115,11 +126,23 @@ remap('n', '<leader>t', ':enew<CR>')
 -- Next buffer
 remap('n', 'L', '<Cmd>bnext<CR>')
 -- Previous buffer
-remap('n', 'K', '<Cmd>bprevious<CR>')
+remap('n', 'H', '<Cmd>bprevious<CR>')
 -- Quit current buffer
 remap('n', '<leader>q', '<Cmd>bd<CR>')
 
-remap('n', '<leader>e', ':NvimTreeToggle<CR>')
+-- Glow: View markdown
+remap('n', '<leader>g', ':Glow<CR>')
+
+-- My own version of gr (go to references)
+function _G.yank_and_search()
+  vim.cmd('normal! yiw')
+  local yanked_word = vim.fn.getreg('"')
+  vim.cmd(':/' .. yanked_word)
+end
+
+vim.api.nvim_set_keymap('n', 'gr', '<Cmd>lua yank_and_search()<CR>', { noremap = true, silent = true })
+
+
 --0=========================================================================0
 -- █░░ ▄▀█ ▀█ █▄█
 -- █▄▄ █▀█ █▄ ░█░
@@ -280,6 +303,7 @@ require("lazy").setup({
             local custom_attach = function(client, bufnr)
                 print('Lsp Attached.')
             end
+            require'lspconfig'.pyright.setup{}
             --0=============================================================================================0
             -- █░░ █░█ ▄▀█ ▄▄ █░░ ▄▀█ █▄░█ █▀▀ █░█ ▄▀█ █▀▀ █▀▀ ▄▄ █▀ █▀▀ █▀█ █░█ █▀▀ █▀█
             -- █▄▄ █▄█ █▀█ ░░ █▄▄ █▀█ █░▀█ █▄█ █▄█ █▀█ █▄█ ██▄ ░░ ▄█ ██▄ █▀▄ ▀▄▀ ██▄ █▀▄
@@ -370,8 +394,89 @@ require("lazy").setup({
             "nvim-tree/nvim-web-devicons",
         },
         config = function()
+            remap('n', '<leader>e', ':NvimTreeToggle<CR>')
             require("nvim-tree").setup {}
         end
+    },
+    {
+        'ellisonleao/glow.nvim',
+        config = function ()
+            require('glow').setup()
+        end
+    },
+    {
+        'kevinhwang91/nvim-ufo',
+        dependencies = {
+            "kevinhwang91/promise-async",
+        },
+        config = function()
+            require('ufo').setup()
+        end
+    },
+    -- {
+    --     'gaoDean/autolist.nvim',
+    --     ft = {
+    --         "markdown",
+    --         'text',
+    --         'text',
+    --         'plaintext',
+    --         'norg'
+    --     },
+    --     config = function ()
+    --         require('autolist').setup()
+    --         -- vim.keymap.set('i', '<tab>', '<cmd>AutolistTab<CR>')
+    --         -- vim.keymap.set('i', '<s-tab>', '<cmd>AutolistShiftTab<CR>')
+    --         vim.keymap.set('i', '<CR>', '<CR><cmd>AutolistNewBullet<CR>')
+    --         vim.keymap.set('n', 'o', 'o<cmd>AutolistNewBullet<CR>')
+    --         vim.keymap.set('n', 'O', 'O<cmd>AutolistNewBulletBefore<CR>')
+    --     end
+    -- },
+    {
+        'smjonas/inc-rename.nvim',
+        config = function()
+            require('inc_rename').setup()
+            vim.keymap.set('n', '<leader>rn', ':IncRename ')
+        end,
+    },
+    {
+      'github/copilot.vim',
+      opts = {},
+      config = function()
+        require('copilot').setup({})
+      end
+    },
+    {
+      'zbirenbaum/copilot.lua',
+      cmd = 'Copilot',
+      event = 'InsertEnter',
+    },
+    {
+      'zbirenbaum/copilot-cmp',
+      config = function()
+        require('copilot_cmp').setup()
+      end,
+    },
+    {
+      'richardbizik/nvim-toc',
+      config = function()
+        require('nvim-toc').setup()
+      end
+    },
+    {
+      'stevearc/aerial.nvim',
+      opts = {},
+      dependencies = {
+        "nvim-treesitter/nvim-treesitter",
+        'nvim-tree/nvim-web-devicons'
+      },
+      config = function()
+        require('aerial').setup({
+          layout = {
+            max_width = { 40, 0.3 }
+          }
+        })
+        vim.keymap.set('n', '<leader>f', ':AerialToggle!<CR> ')
+      end
     }
 },
 {
