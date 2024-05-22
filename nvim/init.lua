@@ -477,6 +477,43 @@ require("lazy").setup({
         })
         vim.keymap.set('n', '<leader>f', ':AerialToggle!<CR> ')
       end
+    },
+    {
+      'vidocqh/data-viewer.nvim',
+      opts = {
+        columnColorRoulette = {
+          "white",
+          "aqua",
+          "white"
+        }
+      },
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+      },
+      config = function()
+        require('data-viewer').setup()
+        vim.keymap.set('n', '<leader>dv', ':DataViewer<CR>')
+      end
+    },
+    {
+      'echasnovski/mini.animate',
+      version = '*',
+      config = function()
+        require('mini.animate').setup({
+          cursor = {
+            enable = true,
+            timing = function()
+              return 1
+            end,
+          },
+          scroll = {
+            enable = true,
+            timing = function()
+              return 1
+            end,
+          },
+        })
+      end
     }
 },
 {
