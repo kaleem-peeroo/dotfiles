@@ -483,8 +483,6 @@ require("lazy").setup({
       opts = {
         columnColorRoulette = {
           "white",
-          "aqua",
-          "white"
         }
       },
       dependencies = {
@@ -519,6 +517,27 @@ require("lazy").setup({
       'nvim-treesitter/nvim-treesitter-context',
       config = function()
         require('treesitter-context').setup()
+      end
+    },
+    {
+      'akinsho/toggleterm.nvim',
+      version = "*",
+      config = function()
+        require('toggleterm').setup {
+          direction = 'float',
+          shade_filetypes = false,
+          float_opts = {
+            border = 'double'
+          }
+        }
+        vim.keymap.set('n', '<leader>t', ':ToggleTerm<CR>')
+        vim.keymap.set('n', '<leader>lg', ':TermExec cmd="lazygit"<CR>')
+      end
+    },
+    {
+      'norcalli/nvim-colorizer.lua',
+      config = function()
+        require('colorizer').setup()
       end
     }
 },
