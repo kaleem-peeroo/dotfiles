@@ -34,7 +34,8 @@ vim.opt.wrap = true
 vim.opt.completeopt = 'menu,menuone,noselect'
 vim.opt.updatetime = 50
 vim.opt.scrolloff = 1
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = 'no'
+vim.opt.statuscolumn = ""
 
 -- List and Match Settings
 vim.opt.list = true
@@ -67,10 +68,15 @@ vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 
+-- concel level for obsidian
+vim.opt.conceallevel = 2
+
 --0=========================================================================0
 -- █▀█ █▀▀ █▀▄▀█ ▄▀█ █▀█ █▀
 -- █▀▄ ██▄ █░▀░█ █▀█ █▀▀ ▄█
 --0=========================================================================0
+-- Exit insert mode with jj
+remap('i', 'jj', '<Esc>')
 -- QOL:
 -- Search centering
 remap('n', 'n', 'nzz')
@@ -98,10 +104,13 @@ remap('v', '<A-k>', ":m '<-2<CR>gv=gv")
 remap('v', '<A-j>', ":m '>+1<CR>gv=gv")
 remap('n', '<A-k>', ':m .-2<cr>==')
 remap('n', '<A-j>', ':m .+1<cr>==')
+
 -- Vertical split
-remap('n', '<leader>|', '<Cmd>vsplit<CR>')
+-- remap('n', '<leader>|', '<Cmd>vsplit<CR>')
+
 -- Horizontal split
-remap('n', '<leader>-', '<Cmd>split<CR>')
+-- remap('n', '<leader>-', '<Cmd>split<CR>')
+
 -- Move in splits with hjkl
 remap('n', '<leader>h', '<Cmd>wincmd h<CR>')
 remap('n', '<leader>j', '<Cmd>wincmd j<CR>')
@@ -111,11 +120,17 @@ remap('t', '<leader>h', '<Cmd>wincmd h<CR>')
 remap('t', '<leader>j', '<Cmd>wincmd j<CR>')
 remap('t', '<leader>k', '<Cmd>wincmd k<CR>')
 remap('t', '<leader>l', '<Cmd>wincmd l<CR>')
+
+-- Scroll down keeps cursor in center
+-- remap('n', '<C-d>', '<C-d>zz')
+-- remap('n', '<C-u>', '<C-u>zz')
+
 -- Resize splits
-remap('n', '<S-Left>', '<Cmd>vertical resize +2<CR>')
-remap('n', '<S-Right>', '<Cmd>vertical resize -2<CR>')
-remap('n', '<S-Up>', '<Cmd>resize -2<CR>')
-remap('n', '<S-Down>', '<Cmd>resize +2<CR>')
+-- remap('n', '<S-Left>', '<Cmd>vertical resize +2<CR>')
+-- remap('n', '<S-Right>', '<Cmd>vertical resize -2<CR>')
+-- remap('n', '<S-Up>', '<Cmd>resize -2<CR>')
+-- remap('n', '<S-Down>', '<Cmd>resize +2<CR>')
+
 -- Indent/Unindent selected text with Tab and Shift+Tab
 remap('v', '>', '>gv')
 remap('v', '<', '<gv')
@@ -142,6 +157,22 @@ end
 
 vim.api.nvim_set_keymap('n', 'gr', '<Cmd>lua yank_and_search()<CR>', { noremap = true, silent = true })
 
+-- Force comments for latex because no one does it for some reason...
+vim.api.nvim_set_keymap('n', '<leader>c', 'I% <Esc>', { noremap = true, silent = true })
+
+-- Custom Functions
+local function insert_latex_figure_snippet()
+  local lines = {
+    '\\begin{figure}[H]',
+    '  \\centering',
+    '  \\includegraphics[width=0.8\\textwidth]{<++>}',
+    '  \\caption{<++>}',
+    '  \\label{fig:<++>}',
+    '\\end{figure}',
+  }
+  vim.api.nvim_buf_set_lines(0, vim.fn.line('.') - 1, vim.fn.line('.'), false, lines)
+  vim.api.nvim_win_set_cursor(0, { vim.fn.line('.') + 1, 25 })
+end
 
 --0=========================================================================0
 -- █░░ ▄▀█ ▀█ █▄█
@@ -201,6 +232,7 @@ require("lazy").setup({
             remap('n', '<leader>fg', builtin.live_grep)
             remap('n', '<leader>fb', builtin.buffers)
             remap('n', '<leader>fh', builtin.help_tags)
+            remap('n', '<leader>fm', builtin.marks)
             -- telescope's setup
             require('telescope').setup {
                 defaults = {
@@ -234,6 +266,7 @@ require("lazy").setup({
                     ['<C-s>'] = ':w<CR>',
                 },
                 view_options = { show_hidden = true },
+                skip_confirm_for_simple_edits = true
             })
         end
     },
@@ -259,7 +292,7 @@ require("lazy").setup({
             -- ENABLES THIS IF USING WINDOWS:
             -- require('nvim-treesitter.install').compilers = { 'zig' } 
             require('nvim-treesitter.configs').setup {
-                ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query' },
+                ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query', 'latex' },
                 -- Install parsers synchronously (only applied to `ensure_installed`)
                 sync_install = false,
                 -- Automatically install missing parsers when entering buffer
@@ -386,18 +419,20 @@ require("lazy").setup({
             )
         end
     },
-    {
-        "nvim-tree/nvim-tree.lua",
-        version = "*",
-        lazy = false,
-        dependencies = {
-            "nvim-tree/nvim-web-devicons",
-        },
-        config = function()
-            remap('n', '<leader>e', ':NvimTreeToggle<CR>')
-            require("nvim-tree").setup {}
-        end
-    },
+    -- {
+    --     "nvim-tree/nvim-tree.lua",
+    --     version = "*",
+    --     lazy = false,
+    --     dependencies = {
+    --         "nvim-tree/nvim-web-devicons",
+    --     },
+    --     config = function()
+    --         remap('n', '<leader>e', ':NvimTreeToggle<CR>')
+    --         require("nvim-tree").setup {
+    --           view = {adaptive_size = true}
+    --         }
+    --     end
+    -- },
     {
         'ellisonleao/glow.nvim',
         config = function ()
@@ -532,6 +567,7 @@ require("lazy").setup({
         }
         vim.keymap.set('n', '<leader>t', ':ToggleTerm<CR>')
         vim.keymap.set('n', '<leader>lg', ':TermExec cmd="lazygit"<CR>')
+        vim.keymap.set('n', '<leader>vd', ':TermExec cmd="vd . "<CR>')
       end
     },
     {
@@ -539,6 +575,63 @@ require("lazy").setup({
       config = function()
         require('colorizer').setup()
       end
+    },
+    {
+      'lervag/vimtex',
+      lazy = false,
+      config = function()
+        vim.g.vimtex_view_method = 'zathura'
+        vim.keymap.set('n', '<leader>ll', ':VimtexCompile<CR>')
+        -- vim.api.nvim_set_keymap('n', '<leader>lf', ':lua insert_latex_figure_snippet()<CR>', { noremap = true, silent = true })
+      end
+    },
+    {
+      'numToStr/Comment.nvim',
+      config = function()
+        require('Comment').setup()
+      end,
+    lazy = false
+    },
+    {
+      "epwalsh/obsidian.nvim",
+      version = "*",
+      lazy = true,
+      ft = "markdown",
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+      },
+      opts = {
+        workspaces = {
+          {
+            name = "vault 2.0",
+            path = "~/vault 2.0/"
+          }
+        }
+      }
+    },
+    {
+      "folke/todo-comments.nvim",
+      dependencies = { "nvim-lua/plenary.nvim" },
+      config = function()
+        require("todo-comments").setup {}
+      end
+    },
+    {
+      "christoomey/vim-tmux-navigator",
+      cmd = {
+        "TmuxNavigateLeft",
+        "TmuxNavigateDown",
+        "TmuxNavigateUp",
+        "TmuxNavigateRight",
+        "TmuxNavigatePrevious"
+      },
+      keys = {
+        { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+        { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+        { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+        { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+        { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" }
+      }
     }
 },
 {
