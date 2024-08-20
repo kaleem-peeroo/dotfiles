@@ -174,3 +174,20 @@ bindkey '^\t' end-of-line
 . "$HOME/.cargo/env"
 
 set -o ignoreeof
+
+###########
+# vi mode #
+###########
+bindkey -v
+#
+# bindkey '^j' vi-cmd-mode
+# bindkey -M vicmd "^V" edit-command-line
+#
+# export KEYTIMEOUT=1
+#
+bindkey "^N" history-search-forward
+bindkey "^P" history-search-backward
+#
+# autoload -U edit-command-line
+# zle -N edit-command-line
+# bindkey '^x' edit-command-line
