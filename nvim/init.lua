@@ -106,10 +106,13 @@ remap('n', '<A-k>', ':m .-2<cr>==')
 remap('n', '<A-j>', ':m .+1<cr>==')
 
 -- Vertical split
--- remap('n', '<leader>|', '<Cmd>vsplit<CR>')
+remap('n', '<leader>|', '<Cmd>vsplit<CR>')
 
 -- Horizontal split
--- remap('n', '<leader>-', '<Cmd>split<CR>')
+remap('n', '<leader>-', '<Cmd>split<CR>')
+
+-- Close split
+remap('n', '<leader>wq', '<Cmd>close<CR>')
 
 -- Move in splits with hjkl
 remap('n', '<leader>h', '<Cmd>wincmd h<CR>')
@@ -121,15 +124,11 @@ remap('t', '<leader>j', '<Cmd>wincmd j<CR>')
 remap('t', '<leader>k', '<Cmd>wincmd k<CR>')
 remap('t', '<leader>l', '<Cmd>wincmd l<CR>')
 
--- Scroll down keeps cursor in center
--- remap('n', '<C-d>', '<C-d>zz')
--- remap('n', '<C-u>', '<C-u>zz')
-
 -- Resize splits
--- remap('n', '<S-Left>', '<Cmd>vertical resize +2<CR>')
--- remap('n', '<S-Right>', '<Cmd>vertical resize -2<CR>')
--- remap('n', '<S-Up>', '<Cmd>resize -2<CR>')
--- remap('n', '<S-Down>', '<Cmd>resize +2<CR>')
+remap('n', '<A-h>', '<Cmd>vertical resize +2<CR>')
+remap('n', '<A-l>', '<Cmd>vertical resize -2<CR>')
+remap('n', '<A-k>', '<Cmd>resize -2<CR>')
+remap('n', '<A-j>', '<Cmd>resize +2<CR>')
 
 -- Indent/Unindent selected text with Tab and Shift+Tab
 remap('v', '>', '>gv')
