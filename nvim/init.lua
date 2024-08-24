@@ -1,5 +1,3 @@
--- Error theme:
-vim.cmd('colorscheme habamax')
 --0=========================================================================0
 -- █▀ █▀▀ ▀█▀ ▀█▀ █ █▄░█ █▀▀ █▀
 -- ▄█ ██▄ ░█░ ░█░ █ █░▀█ █▄█ ▄█
@@ -197,8 +195,11 @@ require("lazy").setup({
     {
         'leet0rz/modified-moonlight.nvim', -- this is the theme
         config = function()
-            vim.cmd('colorscheme moonlight') -- this applies the theme
+            -- vim.cmd('colorscheme moonlight') -- this applies the theme
         end
+    },
+    {
+        'EdenEast/nightfox.nvim',
     },
     {
         'windwp/nvim-autopairs',
@@ -631,6 +632,23 @@ require("lazy").setup({
         { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
         { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" }
       }
+    },
+    {
+      'zaldih/themery.nvim',
+      config = function()
+        require('themery').setup({
+          themes = {
+            {
+              name = "Day",
+              colorscheme = "Dawnfox"
+            },
+            {
+              name = "Night",
+              colorscheme = "Carbonfox"
+            }
+          }
+        })
+      end
     }
 },
 {
