@@ -233,6 +233,10 @@ require("lazy").setup({
             remap('n', '<leader>fb', builtin.buffers)
             remap('n', '<leader>fh', builtin.help_tags)
             remap('n', '<leader>fm', builtin.marks)
+            remap('n', '<leader>gd', builtin.lsp_definitions)
+            remap('n', '<leader>gr', builtin.lsp_references)
+            remap('n', '<leader>f', builtin.lsp_document_symbols)
+
             -- telescope's setup
             require('telescope').setup {
                 defaults = {
@@ -510,7 +514,7 @@ require("lazy").setup({
             max_width = { 40, 0.3 }
           }
         })
-        vim.keymap.set('n', '<leader>f', ':AerialToggle!<CR> ')
+        -- vim.keymap.set('n', '<leader>f', ':AerialToggle!<CR> ')
       end
     },
     {
