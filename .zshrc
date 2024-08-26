@@ -156,7 +156,7 @@ alias sshcc="ssh root@82.165.200.179"
 # ? TMUX Aliases
 alias tmn='tmux new -s'
 alias tmls='tmux ls'
-alias tmkill='tmux kill-session -s'
+alias tmkill='tmux kill-session -t'
 alias tma='tmux attach-session -t'
 
 # nvim aliases
@@ -191,3 +191,5 @@ bindkey "^P" history-search-backward
 # autoload -U edit-command-line
 # zle -N edit-command-line
 # bindkey '^x' edit-command-line
+
+bindkey '^I' autosuggest-accept
