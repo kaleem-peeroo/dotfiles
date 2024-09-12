@@ -112,6 +112,9 @@ alias 5pi="$_5pk1"
 alias ssh3pi="ssh acwh025@3pk1"
 alias ssh5pi="ssh acwh025@5pk1"
 
+export nbip=10.210.8.178
+alias sshnb="ssh city@$nbip"
+
 # AutoPerf Scripts
 # AP Monitor
 alias apm="cd ~/AutoPerf/; source .venv/bin/activate; ./bash_scripts/monitor.sh"
@@ -161,6 +164,8 @@ alias tma='tmux attach-session -t'
 
 # nvim aliases
 alias confnvim='nvim ~/.config/nvim/'
+
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
