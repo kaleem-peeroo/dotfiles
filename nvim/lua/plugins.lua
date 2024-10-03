@@ -87,6 +87,8 @@ require("lazy").setup({
                 default_file_explorer = true,
                 keymaps = {
                     ['<C-s>'] = ':w<CR>',
+                    ['<C-l>'] = false,
+                    ['<C-h>'] = false
                 },
                 view_options = { show_hidden = true },
                 skip_confirm_for_simple_edits = true
@@ -522,6 +524,18 @@ require("lazy").setup({
           },
         })
       end
+    },
+    {
+        "CopilotC-Nvim/CopilotChat.nvim",
+        branch = "canary",
+        dependencies = {
+            { 'zbirenbaum/copilot.lua' },
+            { 'nvim-lua/plenary.nvim' },
+        },
+        build = { 'make tiktoken' },
+        opts = {
+            debug = true
+        },
     }
 },
 {
