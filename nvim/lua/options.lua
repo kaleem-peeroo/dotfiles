@@ -6,10 +6,10 @@ vim.opt.titlestring = '%t'
 
 -- Indentation and Formatting Settings
 vim.opt.autoindent = true
-vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
 vim.opt.smarttab = true
-vim.opt.tabstop = 2
+vim.opt.tabstop = 4
 -- vim.opt.iskeyword = '_'
 
 -- Display Settings
@@ -25,6 +25,7 @@ vim.opt.updatetime = 50
 vim.opt.scrolloff = 1
 vim.opt.signcolumn = 'no'
 vim.opt.statuscolumn = ""
+vim.opt.colorcolumn = '90'
 
 -- List and Match Settings
 vim.opt.list = true
