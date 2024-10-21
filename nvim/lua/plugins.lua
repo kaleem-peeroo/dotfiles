@@ -1,4 +1,5 @@
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim' -- Lazy bootstrap starts here
+
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     'git',
@@ -9,7 +10,9 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)                                -- Ends here, this should be left alone.
+
 require("lazy").setup({
     {
         'leet0rz/modified-moonlight.nvim', -- this is the theme
@@ -354,26 +357,26 @@ require("lazy").setup({
         vim.keymap.set('n', '<leader>dv', ':DataViewer<CR>')
       end
     },
-    {
-      'echasnovski/mini.animate',
-      version = '*',
-      config = function()
-        require('mini.animate').setup({
-          cursor = {
-            enable = true,
-            timing = function()
-              return 1
-            end,
-          },
-          scroll = {
-            enable = true,
-            timing = function()
-              return 1
-            end,
-          },
-        })
-      end
-    },
+    -- {
+    --   'echasnovski/mini.animate',
+    --   version = '*',
+    --   config = function()
+    --     require('mini.animate').setup({
+    --       cursor = {
+    --         enable = true,
+    --         timing = function()
+    --           return 1
+    --         end,
+    --       },
+    --       scroll = {
+    --         enable = true,
+    --         timing = function()
+    --           return 1
+    --         end,
+    --       },
+    --     })
+    --   end
+    -- },
     {
       'nvim-treesitter/nvim-treesitter-context',
       config = function()
@@ -534,9 +537,35 @@ require("lazy").setup({
         },
         build = { 'make tiktoken' },
         opts = {
-            debug = true
+            debug = false,
+            mappings = {
+                reset = {
+                    normal = '',
+                    insert = '',
+                }
+            }
         },
-    }
+    },
+    -- {
+    --     "vhyrro/luarocks.nvim",
+    --     priority = 1001,
+    --     opts = {
+    --         rocks = { "magick" }
+    --     },
+    -- },
+    -- {
+    --     "3rd/image.nvim",
+    --     dependencies = {"kiyoon/magick.nvim"},
+    --     config = function()
+    --         require("image").setup({
+    --             tmux_show_only_in_active_window = true,
+    --         })
+    --     end
+    -- },
+    -- {
+    --     "willothy/wezterm.nvim",
+    --     config = true
+    -- }
 },
 {
     ui = {
