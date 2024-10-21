@@ -67,3 +67,5 @@ vim.api.nvim_create_autocmd('TextYankPost', {
         vim.highlight.on_yank()
     end
 })
+
+vim.g.python3_host_prog = vim.fn.expand("~/venv/bin/python3")
