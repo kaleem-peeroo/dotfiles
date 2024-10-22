@@ -57,7 +57,8 @@ require("lazy").setup({
             vim.keymap.set('n', '<leader>fm', builtin.marks)
             vim.keymap.set('n', '<leader>gd', builtin.lsp_definitions)
             vim.keymap.set('n', '<leader>gr', builtin.lsp_references)
-            vim.keymap.set('n', '<leader>f', builtin.lsp_document_symbols)
+            -- vim.keymap.set('n', '<leader>f', builtin.lsp_document_symbols)
+            vim.keymap.set('n', '<leader>f', ':lua require("telescope.builtin").lsp_document_symbols({symbols="function"})<CR>')
 
             -- telescope's setup
             require('telescope').setup {
@@ -566,27 +567,19 @@ require("lazy").setup({
                 alpha = 0.1
             })
         end
+    },
+    {
+        "williamboman/mason.nvim",
+        config = function()
+            require("mason").setup()
+        end
+    },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        config = function()
+            require("mason-lspconfig").setup()
+        end
     }
-    -- {
-    --     "vhyrro/luarocks.nvim",
-    --     priority = 1001,
-    --     opts = {
-    --         rocks = { "magick" }
-    --     },
-    -- },
-    -- {
-    --     "3rd/image.nvim",
-    --     dependencies = {"kiyoon/magick.nvim"},
-    --     config = function()
-    --         require("image").setup({
-    --             tmux_show_only_in_active_window = true,
-    --         })
-    --     end
-    -- },
-    -- {
-    --     "willothy/wezterm.nvim",
-    --     config = true
-    -- }
 },
 {
     ui = {
