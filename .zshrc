@@ -112,6 +112,8 @@ alias 5pi="$_5pk1"
 alias ssh3pi="ssh acwh025@3pk1"
 alias ssh5pi="ssh acwh025@5pk1"
 
+alias sshros="ssh city@10.210.8.178"
+
 export nbip=10.210.8.178
 alias sshnb="ssh city@$nbip"
 
