@@ -557,6 +557,15 @@ require("lazy").setup({
             vim.keymap.set('n', '<leader>d', '<cmd>lua require("goto-preview").goto_preview_definition()<CR>')
             vim.keymap.set('n', '<leader>w', '<cmd>lua require("goto-preview").close_all_win()<CR>')
         end
+    },
+    {
+        "zbirenbaum/neodim",
+        event = "LspAttach",
+        config = function()
+            require("neodim").setup({
+                alpha = 0.1
+            })
+        end
     }
     -- {
     --     "vhyrro/luarocks.nvim",
