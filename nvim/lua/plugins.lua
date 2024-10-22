@@ -546,6 +546,18 @@ require("lazy").setup({
             }
         },
     },
+    {
+        "rmagatti/goto-preview",
+        event = "BufEnter",
+        config = function()
+            require("goto-preview").setup({
+                width = 150,
+                height = 30
+            })
+            vim.keymap.set('n', '<leader>d', '<cmd>lua require("goto-preview").goto_preview_definition()<CR>')
+            vim.keymap.set('n', '<leader>w', '<cmd>lua require("goto-preview").close_all_win()<CR>')
+        end
+    }
     -- {
     --     "vhyrro/luarocks.nvim",
     --     priority = 1001,
