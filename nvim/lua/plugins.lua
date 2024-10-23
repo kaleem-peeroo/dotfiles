@@ -564,7 +564,7 @@ require("lazy").setup({
         event = "LspAttach",
         config = function()
             require("neodim").setup({
-                alpha = 0.1
+                alpha = 0.5
             })
         end
     },

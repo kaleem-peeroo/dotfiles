@@ -199,4 +199,5 @@ bindkey "^P" history-search-backward
 # zle -N edit-command-line
 # bindkey '^x' edit-command-line
 
+# bindkey '^I' complete-word
 bindkey '^I' autosuggest-accept
