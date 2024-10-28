@@ -64,7 +64,10 @@ HIST_STAMPS="dd/mm/yyyy"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+    git
+    zsh-autosuggestions
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -151,6 +154,8 @@ alias v="nvim"
 alias m="make"
 alias mt="make test"
 alias mr="make run"
+
+alias mp="multipass"
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
