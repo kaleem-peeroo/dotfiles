@@ -223,6 +223,11 @@ require("lazy").setup({
                 snippet = {
                     expand = function(args)
                         require('luasnip').lsp_expand(args.body)
+                        require('luasnip.loaders.from_vscode').lazy_load({
+                            paths = {
+                                './my_snippets'
+                            }
+                        })
                     end,
                 },
                 window = {
@@ -238,6 +243,7 @@ require("lazy").setup({
                 }),
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
+                    { name = 'nvim_lsp' },
                     { name = 'luasnip' },
                     { name = 'path' },
                 }),
@@ -249,6 +255,19 @@ require("lazy").setup({
             )
         end
     },
+    {
+        "L3MON4D3/LuaSnip",
+        lazy = false,
+        dependencies = {
+            "saadparwaiz1/cmp_luasnip",
+        },
+        config = function()
+            require("luasnip.loaders.from_vscode").lazy_load({
+                paths = './my_snippets'
+            })
+        end
+    },
+
     -- {
     --     "nvim-tree/nvim-tree.lua",
     --     version = "*",
