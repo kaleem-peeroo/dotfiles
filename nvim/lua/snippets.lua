@@ -38,6 +38,7 @@ ls.add_snippets("python", {
         text({"import pandas as pd", ""}),
         text({"", ""}),
         text({"from rich.console import Console", ""}),
+        text({"from rich.pretty import pprint", ""}),
         text({"", ""}),
         text({"console = Console()", ""}),
     })
