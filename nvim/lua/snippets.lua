@@ -9,13 +9,25 @@ local dynamic = ls.dynamic_node
 local lambda = require('luasnip.extras').lambda
 local format = require('luasnip.extras.fmt').fmt
 
+--[[
+
+Tips for workign with snippets:
+- Start a snippet with `snip` function.
+- First argument is the trigger for the snippet.
+- Second argument is a table of nodes that build up the text.
+- You can use text() to insert text.
+- Add a new line with an empty text() node: text({"my line", ""})
+- Use ins() to insert a cursor position.
+
+]]--
+
 ls.add_snippets("python", {
     -- The trigger is "cpr":
     -- console.print(f"", style="")
     snip("cpr", {
-        text({"console.print(f\""}),
+        text({"console.print(", "\tf\""}),
         ins(0),
-        text({"\", style=\"\")"}),
+        text({"\",", "\tstyle=\"\"", ")"}),
     }),
     -- The trigger is "imp1":
     -- imports: pandas, numpy, os, sys, rich console, and rich progress
