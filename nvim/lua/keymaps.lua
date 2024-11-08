@@ -22,9 +22,22 @@ remap('n', '<C-j>', '<S-Down>zz')
 remap('v', '<C-k>', '<S-Up>zz')
 remap('v', '<C-j>', '<S-Down>zz')
 -- Save file
-remap('n', '<C-s>', ':silent w<CR>')
-remap('i', '<C-s>', '<Esc>:silent w<CR>')
-remap('v', '<C-s>', '<Esc>:silent w<CR>')
+-- remap('n', '<C-s>', ':silent w<CR>')
+-- remap('i', '<C-s>', '<Esc>:silent w<CR>')
+-- remap('v', '<C-s>', '<Esc>:silent w<CR>')
+remap(
+    'n',
+    '<C-s>',
+    ':silent lua vim.lsp.buf.format({async = true})<CR>:silent w<CR>',
+    { noremap = true, silent = true }
+)
+remap(
+    'i',
+    '<C-s>',
+    '<Esc> :silent lua vim.lsp.buf.format({async = true})<CR>:silent w<CR>i',
+    { noremap = true, silent = true }
+)
+
 -- Move selected lines with alt arrows
 remap('v', '<A-k>', ":m '<-2<CR>gv=gv")
 remap('v', '<A-j>', ":m '>+1<CR>gv=gv")

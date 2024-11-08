@@ -167,6 +167,7 @@ require("lazy").setup({
                 print('Lsp Attached.')
             end
             require'lspconfig'.pyright.setup{}
+            require'lspconfig'.ruff.setup{}
             --0=============================================================================================0
             -- █░░ █░█ ▄▀█ ▄▄ █░░ ▄▀█ █▄░█ █▀▀ █░█ ▄▀█ █▀▀ █▀▀ ▄▄ █▀ █▀▀ █▀█ █░█ █▀▀ █▀█
             -- █▄▄ █▄█ █▀█ ░░ █▄▄ █▀█ █░▀█ █▄█ █▄█ █▀█ █▄█ ██▄ ░░ ▄█ ██▄ █▀▄ ▀▄▀ ██▄ █▀▄
@@ -594,9 +595,60 @@ require("lazy").setup({
         end
     },
     {
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+            require("mason-null-ls").setup({
+                ensure_installed = { "black" }
+            })
+
+            local null_ls = require("null-ls")
+
+            null_ls.setup({
+                sources = {
+                    null_ls.builtins.formatting.ruff
+                }
+            })
+
+        end
+    },
+    {
+        "jay-babu/mason-null-ls.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            "williamboman/mason.nvim",
+            "nvimtools/none-ls.nvim"
+        },
+        config = function()
+            require("mason-null-ls").setup({
+                ensure_installed = { "black" }
+            })
+        end
+    },
+    {
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup()
+        end
+    },
+    {
+        "mhartington/formatter.nvim",
+        config = function()
+            require("formatter").setup({
+                filetype = {
+                    json = {
+                        function()
+                            return {
+                                exe = "js-beautify",
+                                stdin = true,
+                                try_node_modules = true
+                            }
+                        end
+                    },
+                    ["*"] = {
+                        require("formatter.filetypes.any").remove_trailing_whitespace,
+                    }
+                }
+            })
         end
     }
 },
