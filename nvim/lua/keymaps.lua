@@ -86,7 +86,7 @@ function _G.yank_and_search()
   local yanked_word = vim.fn.getreg('"')
   vim.cmd(':/' .. yanked_word)
 end
-vim.api.nvim_set_keymap('n', 'gr', '<Cmd>lua yank_and_search()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>gr', '<Cmd>lua yank_and_search()<CR>', { noremap = true, silent = true })
 
 -- Force comments for latex because no one does it for some reason...
 vim.api.nvim_set_keymap('n', '<leader>c', 'I% <Esc>', { noremap = true, silent = true })

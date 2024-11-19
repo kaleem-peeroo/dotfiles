@@ -55,8 +55,8 @@ require("lazy").setup({
             vim.keymap.set('n', '<leader>fb', builtin.buffers)
             vim.keymap.set('n', '<leader>fh', builtin.help_tags)
             vim.keymap.set('n', '<leader>fm', builtin.marks)
-            vim.keymap.set('n', '<leader>gd', builtin.lsp_definitions)
-            vim.keymap.set('n', '<leader>gr', builtin.lsp_references)
+            vim.keymap.set('n', 'gd', builtin.lsp_definitions)
+            vim.keymap.set('n', 'gr', builtin.lsp_references)
             -- vim.keymap.set('n', '<leader>f', builtin.lsp_document_symbols)
             vim.keymap.set('n', '<leader>f', ':lua require("telescope.builtin").lsp_document_symbols({symbols="function"})<CR>')
 
@@ -164,7 +164,6 @@ require("lazy").setup({
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
             local custom_attach = function(client, bufnr)
-                print('Lsp Attached.')
             end
             require'lspconfig'.pyright.setup{}
             require'lspconfig'.ruff.setup{}
@@ -649,6 +648,49 @@ require("lazy").setup({
                     }
                 }
             })
+        end
+    },
+    {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim"
+        },
+        config = function()
+            local harpoon = require("harpoon")
+            harpoon:setup({})
+
+            local conf = require("telescope.config").values
+            local function toggle_telescope(harpoon_files)
+                local file_paths = {}
+                for _, item in ipairs(harpoon_files.items) do
+                    table.insert(file_paths, item.value)
+                end
+
+                require("telescope.pickers").new({}, {
+                    prompt_title = "Harpoon",
+                    finder = require("telescope.finders").new_table({
+                        results = file_paths
+                    }),
+                    previewer = conf.file_previewer({}),
+                    sorter = conf.generic_sorter({}),
+                }):find()
+
+            end
+
+            vim.keymap.set(
+                "n",
+                "<C-h>",
+                function() toggle_telescope(harpoon:list()) end,
+                { desc = "Open harpoon window"}
+            )
+
+            vim.keymap.set(
+                "n",
+                "<leader>a",
+                function() harpoon:list():add() end
+            )
         end
     }
 },
