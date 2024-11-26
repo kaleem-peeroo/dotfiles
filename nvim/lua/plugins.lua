@@ -681,9 +681,8 @@ require("lazy").setup({
 
             vim.keymap.set(
                 "n",
-                "<C-h>",
-                function() toggle_telescope(harpoon:list()) end,
-                { desc = "Open harpoon window"}
+                "<leader>l",
+                function() toggle_telescope(harpoon:list()) end
             )
 
             vim.keymap.set(

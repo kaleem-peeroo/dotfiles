@@ -28,6 +28,7 @@ local function silent_format()
         vim.lsp.buf.format({async = true})
     end
 end
+
 remap('n', '<C-s>', ':silent w<CR>')
 remap('i', '<C-s>', '<Esc>:silent w<CR>')
 remap('v', '<C-s>', '<Esc>:silent w<CR>')
@@ -71,7 +72,7 @@ remap('n', '<leader>nh', '<Cmd>nohlsearch<CR>')
 -- New buffer
 remap('n', '<leader>t', ':enew<CR>')
 -- Next buffer
-remap('n', '<leader>l', '<Cmd>bnext<CR>')
+remap('n', '<tab>', '<Cmd>bnext<CR>')
 -- Previous buffer
 remap('n', '<leader>h', '<Cmd>bprevious<CR>')
 -- Quit current buffer
