@@ -92,7 +92,14 @@ require("lazy").setup({
                 keymaps = {
                     ['<C-s>'] = ':w<CR>',
                     ['<C-l>'] = false,
-                    ['<C-h>'] = false
+                    ['<C-h>'] = false,
+                    ['yp'] = {
+                        desc = "Copy filepath to system clipboard",
+                        callback = function()
+                            require('oil.actions').copy_entry_path.callback()
+                            vim.fn.setreg('+', vim.fn.getreg(vim.v.register))
+                        end,
+                    }
                 },
                 view_options = { show_hidden = true },
                 skip_confirm_for_simple_edits = true
