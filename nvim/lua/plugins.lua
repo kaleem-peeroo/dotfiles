@@ -557,7 +557,7 @@ require("lazy").setup({
     },
     {
         "CopilotC-Nvim/CopilotChat.nvim",
-        branch = "canary",
+        branch = "main",
         dependencies = {
             { 'zbirenbaum/copilot.lua' },
             { 'nvim-lua/plenary.nvim' },
@@ -753,11 +753,11 @@ require("lazy").setup({
             -- Keybindings
             vim.keymap.set("n", "dc", dap.continue, { desc = "Debug: Continue" })
             vim.keymap.set("n", "do", dap.step_over, { desc = "Debug: Step Over" })
-            vim.keymap.set("n", "di", dap.step_into, { desc = "Debug: Step Into" })
+            vim.keymap.set("n", "<leader>di", dap.step_into, { desc = "Debug: Step Into" })
             vim.keymap.set("n", "dO", dap.step_out, { desc = "Debug: Step Out" })
             vim.keymap.set("n", "db", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
             vim.keymap.set("n", "<leader>dr", dap.repl.open, { desc = "Debug: Open REPL" })
-            vim.keymap.set("n", "dt", dapui.toggle, { desc = "Debug: Toggle UI" })
+            vim.keymap.set("n", "<leader>dt", dapui.toggle, { desc = "Debug: Toggle UI" })
         end
     }
 },
