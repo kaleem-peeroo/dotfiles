@@ -23,7 +23,7 @@ vim.opt.wrap = true
 vim.opt.completeopt = 'menu,menuone,noselect'
 vim.opt.updatetime = 50
 vim.opt.scrolloff = 5
-vim.opt.signcolumn = 'no'
+vim.opt.signcolumn = 'yes'
 vim.opt.statuscolumn = ""
 vim.opt.colorcolumn = '90'
 
