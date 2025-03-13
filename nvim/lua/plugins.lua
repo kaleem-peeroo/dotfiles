@@ -89,11 +89,14 @@ require("lazy").setup({
             vim.keymap.set('n', '<leader>o', ':Oil<CR>')
             require('oil').setup({
                 default_file_explorer = true,
+                use_default_keymaps = false,
                 keymaps = {
                     ['<C-s>'] = ':w<CR>',
+                    ['g?'] = { 'actions.show_help', mode="n" },
+                    ['<CR>'] = "actions.select",
                     ['<C-l>'] = false,
                     ['<C-h>'] = false,
-                    ['yp'] = {
+                    ['fy'] = {
                         desc = "Copy filepath to system clipboard",
                         callback = function()
                             require('oil.actions').copy_entry_path.callback()
@@ -579,10 +582,17 @@ require("lazy").setup({
         config = function()
             require("goto-preview").setup({
                 width = 150,
-                height = 30
+                height = 50,
+                references = {
+                    provider = "telescope",
+                    telescope = require("telescope.themes").get_dropdown({ hide_preview = false })
+                }
             })
-            vim.keymap.set('n', '<leader>d', '<cmd>lua require("goto-preview").goto_preview_definition()<CR>')
-            vim.keymap.set('n', '<leader>w', '<cmd>lua require("goto-preview").close_all_win()<CR>')
+            vim.keymap.set('n', 'gpd', '<cmd>lua require("goto-preview").goto_preview_definition()<CR>')
+            vim.keymap.set('n', 'gt', '<cmd>lua require("goto-preview").goto_preview_type_definition()<CR>')
+            vim.keymap.set('n', 'gi', '<cmd>lua require("goto-preview").goto_preview_implementation()<CR>')
+            -- vim.keymap.set('n', 'gr', '<cmd>lua require("goto-preview").goto_preview_references()<CR>')
+            vim.keymap.set('n', 'gw', '<cmd>lua require("goto-preview").close_all_win()<CR>')
         end
     },
     {
