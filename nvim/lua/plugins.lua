@@ -606,7 +606,15 @@ require("lazy").setup({
     },
     {
         "williamboman/mason.nvim",
-        config = function()
+        opts = {
+            ensure_installed = {
+                "black",
+                "debugpy",
+                "mypy"
+            },
+        },
+
+        config = function(opts)
             require("mason").setup()
         end
     },
@@ -711,6 +719,18 @@ require("lazy").setup({
     },
     { "mfussenegger/nvim-dap" },
     {
+        "mfussenegger/nvim-dap-python" ,
+        ft = "python",
+        dependencies = {
+            "mfussenegger/nvim-dap",
+            "rcarriga/nvim-dap-ui"
+        },
+        config = function(_, opts)
+            local path = "~/venv/bin/python"
+            require("dap-python").setup(path)
+        end
+    },
+    {
         "rcarriga/nvim-dap-ui",
         dependencies = { "mfussenegger/nvim-dap" , 'nvim-neotest/nvim-nio'},
         config = function()
@@ -768,6 +788,27 @@ require("lazy").setup({
             vim.keymap.set("n", "db", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
             vim.keymap.set("n", "<leader>dr", dap.repl.open, { desc = "Debug: Open REPL" })
             vim.keymap.set("n", "<leader>dt", dapui.toggle, { desc = "Debug: Toggle UI" })
+        end
+    },
+    {
+        "nvim-neotest/neotest-python"
+    },
+    {
+        "nvim-neotest/neotest",
+        dependencies = {
+            "nvim-neotest/nvim-nio",
+            "nvim-lua/plenary.nvim",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-treesitter/nvim-treesitter"
+        },
+        config = function()
+            require("neotest").setup({
+                adapters = {
+                    require("neotest-python")({
+                        python="~/venv/bin/python"
+                    })
+                }
+            })
         end
     }
 },
