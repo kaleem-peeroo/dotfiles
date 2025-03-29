@@ -387,26 +387,26 @@ require("lazy").setup({
         vim.keymap.set('n', '<leader>dv', ':DataViewer<CR>')
       end
     },
-    -- {
-    --   'echasnovski/mini.animate',
-    --   version = '*',
-    --   config = function()
-    --     require('mini.animate').setup({
-    --       cursor = {
-    --         enable = true,
-    --         timing = function()
-    --           return 1
-    --         end,
-    --       },
-    --       scroll = {
-    --         enable = true,
-    --         timing = function()
-    --           return 1
-    --         end,
-    --       },
-    --     })
-    --   end
-    -- },
+    {
+      'echasnovski/mini.animate',
+      version = '*',
+      config = function()
+        require('mini.animate').setup({
+          cursor = {
+            enable = true,
+            timing = function()
+              return 1
+            end,
+          },
+          scroll = {
+            enable = true,
+            timing = function()
+              return 1
+            end,
+          },
+        })
+      end
+    },
     {
       'nvim-treesitter/nvim-treesitter-context',
       config = function()

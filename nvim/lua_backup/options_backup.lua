@@ -1,3 +1,5 @@
+vim.g.mapleader = ' '  -- Setting the leader key
+
 -- Terminal and Title Settings
 vim.opt.title = true
 vim.opt.titlestring = '%t'
@@ -11,7 +13,6 @@ vim.opt.tabstop = 4
 -- vim.opt.iskeyword = '_'
 
 -- Display Settings
--- vim.cmd("colorscheme nightfox")
 vim.opt.cursorline = true
 vim.opt.expandtab = true
 vim.opt.mouse = 'a'
