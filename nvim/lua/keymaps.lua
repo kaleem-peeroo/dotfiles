@@ -72,17 +72,14 @@ remap('v', '<', '<gv')
 -- Remove search HL
 remap('n', '<leader>nh', '<Cmd>nohlsearch<CR>')
 -- New buffer
-remap('n', '<leader>t', ':enew<CR>')
+-- remap('n', '<leader>t', ':enew<CR>')
 -- Next buffer
-remap('n', '<tab>', '<Cmd>bnext<CR>')
+-- remap('n', '<tab>', '<Cmd>bnext<CR>')
 -- Previous buffer
-remap('n', '<leader>h', '<Cmd>bprevious<CR>')
+-- remap('n', '<leader>h', '<Cmd>bprevious<CR>')
 -- Quit current buffer
 remap('n', '<leader>q', '<Cmd>bd<CR>')
 
--- Glow: View markdown
-remap('n', '<leader>g', ':Glow<CR>')
---
 -- My own version of gr (go to references)
 function _G.yank_and_search()
   vim.cmd('normal! yiw')

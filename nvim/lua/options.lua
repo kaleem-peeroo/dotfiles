@@ -11,7 +11,6 @@ vim.opt.tabstop = 4
 -- vim.opt.iskeyword = '_'
 
 -- Display Settings
--- vim.cmd("colorscheme nightfox")
 vim.opt.cursorline = true
 vim.opt.expandtab = true
 vim.opt.mouse = 'a'
@@ -21,10 +20,10 @@ vim.opt.wildmenu = true
 vim.opt.wrap = true
 vim.opt.completeopt = 'menu,menuone,noselect'
 vim.opt.updatetime = 50
-vim.opt.scrolloff = 5
+vim.opt.scrolloff = 1
 vim.opt.signcolumn = 'yes'
 vim.opt.statuscolumn = ""
-vim.opt.colorcolumn = '90'
+vim.opt.colorcolumn = '0'
 
 -- List and Match Settings
 vim.opt.list = true

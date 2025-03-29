@@ -38,5 +38,12 @@ return {
             "<leader>a",
             function() harpoon:list():add() end
         )
+
+        vim.keymap.set(
+            "n",
+            "<leader>d",
+            function() harpoon:list():remove() end
+        )
+
     end
 }

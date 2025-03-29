@@ -12,10 +12,9 @@ return {
         vim.keymap.set('n', '<leader>fm', builtin.marks)
         vim.keymap.set('n', 'gd', builtin.lsp_definitions)
         vim.keymap.set('n', 'gr', builtin.lsp_references)
+        vim.keymap.set('n', '<leader>cp', builtin.colorscheme)
         vim.keymap.set('n', '<leader>f', builtin.lsp_document_symbols)
-        -- vim.keymap.set('n', '<leader>f', ':lua require("telescope.builtin").lsp_document_symbols({symbols="function"})<CR>')
 
-        -- telescope's setup
         require('telescope').setup {
             defaults = {
                 sorting_strategy = 'ascending',
@@ -30,6 +29,11 @@ return {
                     }
                 },
             },
+            pickers = {
+                colorscheme = {
+                    enable_preview = true,
+                },
+            }
         }
     end
 }

@@ -3,11 +3,15 @@ return {
     config = function()
         local lspconfig = require('lspconfig')
         local capabilities = vim.lsp.protocol.make_client_capabilities()
+
         capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
         local custom_attach = function(client, bufnr)
         end
+
         require'lspconfig'.pyright.setup{}
         require'lspconfig'.ruff.setup{}
+
         lspconfig.lua_ls.setup ({
             on_attach = custom_attach,
             capabilities = capabilities,
