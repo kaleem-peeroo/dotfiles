@@ -3,5 +3,6 @@ return {
     -- version = "*",
     config = function()
         require("bufferline").setup()
-    end
+    end,
+    enabled = false
 }
