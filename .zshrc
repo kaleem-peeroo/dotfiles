@@ -45,6 +45,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias home="cd ~"
 alias e="exit"
+alias q="exit"
 alias lg="lazygit"
 
 export _3pk1=10.210.44.247
