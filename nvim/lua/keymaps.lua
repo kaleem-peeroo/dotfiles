@@ -98,3 +98,6 @@ vim.api.nvim_set_keymap('n', '<leader>c', 'I% <Esc>', { noremap = true, silent =
 
 -- CopilotChat
 vim.keymap.set('n', "<leader>cc", ':CopilotChatToggle<CR>')
+
+-- Rename using lsp
+vim.keymap.set('n', '<leader>rn', function() vim.lsp.buf.rename() end, { noremap = true, silent = true })
