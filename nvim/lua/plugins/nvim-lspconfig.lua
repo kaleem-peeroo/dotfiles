@@ -9,8 +9,21 @@ return {
         local custom_attach = function(client, bufnr)
         end
 
-        require'lspconfig'.pyright.setup{}
-        require'lspconfig'.ruff.setup{}
+        lspconfig.pyright.setup{
+            on_attach = custom_attach,
+            capabilities = capabilities,
+            settings = {
+                python = {
+                    analysis = {
+                        autoSearchPaths = true,
+                        useLibraryCodeForTypes = false,
+                        diagnosticMode = "openFilesOnly",
+                    },
+                },
+            },
+        }
+
+        lspconfig.ruff.setup{}
 
         lspconfig.lua_ls.setup ({
             on_attach = custom_attach,
