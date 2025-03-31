@@ -9,7 +9,7 @@ return {
             timing = function(_, n) return 100 / n end,
         },
         scroll = {
-            enable = true,
+            enable = false,
             timing = function(_, n) return 100 / n end,
         }
     })
