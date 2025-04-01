@@ -42,7 +42,7 @@ return {
         vim.keymap.set(
             "n",
             "<leader>d",
-            function() harpoon:list():remove() end
+            function() harpoon:list():clear() end
         )
 
     end
