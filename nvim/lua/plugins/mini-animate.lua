@@ -11,6 +11,9 @@ return {
         scroll = {
             enable = false,
             timing = function(_, n) return 100 / n end,
+        },
+        resize = {
+            enable = false
         }
     })
     end
