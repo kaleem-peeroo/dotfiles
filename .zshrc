@@ -113,6 +113,10 @@ alias tma='tmux attach-session -t'
 
 alias sync_zshrc="cp ~/.zshrc ~/.config/.zshrc;"
 
+# Makefile aliases
+alias mt='make t' # make t instead of make test because make test keeps prompting zsh autosuggestions
+alias mr="make run"
+
 alias scvenv='source ~/venv/bin/activate'
 
 # nvim aliases
