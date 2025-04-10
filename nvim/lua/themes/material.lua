@@ -1,6 +1,5 @@
 return {
-    "folke/tokyonight.nvim",
+    "marko-cerovac/material.nvim",
     lazy = false,
     priority = 1000,
-    
 }
