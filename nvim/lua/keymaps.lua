@@ -24,13 +24,6 @@ remap('v', '<C-j>', '<S-Down>zz')
 remap('n', '<C-d>', '<C-d>zz')
 remap('n', '<C-u>', '<C-u>zz')
 
--- Save file
-local function silent_format()
-    if vim.lsp.buf.server_ready() then
-        vim.lsp.buf.format({async = true})
-    end
-end
-
 remap('n', '<C-s>', ':silent w<CR>')
 remap('i', '<C-s>', '<Esc>:silent w<CR>')
 remap('v', '<C-s>', '<Esc>:silent w<CR>')
@@ -50,16 +43,6 @@ remap('n', '<leader>-', '<Cmd>split<CR>')
 -- Close split
 remap('n', '<leader>wq', '<Cmd>close<CR>')
 
--- -- Move in splits with hjkl
--- remap('n', '<leader>h', '<Cmd>wincmd h<CR>')
--- remap('n', '<leader>j', '<Cmd>wincmd j<CR>')
--- remap('n', '<leader>k', '<Cmd>wincmd k<CR>')
--- remap('n', '<leader>l', '<Cmd>wincmd l<CR>')
--- remap('t', '<leader>h', '<Cmd>wincmd h<CR>')
--- remap('t', '<leader>j', '<Cmd>wincmd j<CR>')
--- remap('t', '<leader>k', '<Cmd>wincmd k<CR>')
--- remap('t', '<leader>l', '<Cmd>wincmd l<CR>')
-
 -- Resize splits
 remap('n', 'H', '<Cmd>vertical resize +5<CR>')
 remap('n', 'L', '<Cmd>vertical resize -5<CR>')
@@ -71,12 +54,6 @@ remap('v', '>', '>gv')
 remap('v', '<', '<gv')
 -- Remove search HL
 remap('n', '<leader>nh', '<Cmd>nohlsearch<CR>')
--- New buffer
--- remap('n', '<leader>t', ':enew<CR>')
--- Next buffer
--- remap('n', '<tab>', '<Cmd>bnext<CR>')
--- Previous buffer
--- remap('n', '<leader>h', '<Cmd>bprevious<CR>')
 -- Quit current buffer
 remap('n', '<leader>q', '<Cmd>bd<CR>')
 
