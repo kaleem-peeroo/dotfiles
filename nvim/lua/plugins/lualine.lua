@@ -12,7 +12,8 @@ return {
                 lualine_a = { 'branch' },
                 lualine_b = { { 'filename', path = 1 } },
             },
-            sections = {}
+            sections = {},
+            inactive_sections = {}
         })
     end
 }
