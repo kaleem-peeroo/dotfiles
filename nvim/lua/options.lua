@@ -23,7 +23,11 @@ vim.opt.updatetime = 50
 vim.opt.scrolloff = 1
 vim.opt.signcolumn = 'yes'
 vim.opt.statuscolumn = ""
+vim.opt.statusline = ""
+vim.opt.ruler = false
+vim.opt.showmode = false
 vim.opt.colorcolumn = '0'
+vim.opt.laststatus = 0
 
 -- List and Match Settings
 vim.opt.list = true
