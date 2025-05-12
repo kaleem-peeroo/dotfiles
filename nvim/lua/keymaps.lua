@@ -68,7 +68,7 @@ vim.api.nvim_set_keymap(
     '<leader>gr',
     '<Cmd>lua yank_and_search()<CR>',
     { noremap = true, silent = true }
-    )
+)
 
 -- Force comments for latex because no one does it for some reason...
 vim.api.nvim_set_keymap('n', '<leader>c', 'I% <Esc>', { noremap = true, silent = true })
