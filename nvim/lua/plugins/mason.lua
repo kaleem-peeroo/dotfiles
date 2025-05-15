@@ -1,5 +1,7 @@
 return {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
+    "mason-org/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
     opts = {
         ensure_installed = {
             "black",
@@ -7,7 +9,6 @@ return {
             "mypy"
         },
     },
-
     config = function(opts)
         require("mason").setup()
     end
