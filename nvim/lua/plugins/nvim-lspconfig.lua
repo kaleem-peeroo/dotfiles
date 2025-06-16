@@ -9,11 +9,12 @@ return {
         local custom_attach = function(client, bufnr)
         end
 
-        lspconfig.pyright.setup{
+        lspconfig.pyright.setup {
             on_attach = custom_attach,
             capabilities = capabilities,
             settings = {
                 python = {
+                    pythonPath = "/Users/kaleempeeroo/venv/bin/python",
                     analysis = {
                         autoSearchPaths = true,
                         useLibraryCodeForTypes = false,
@@ -23,9 +24,9 @@ return {
             },
         }
 
-        lspconfig.ruff.setup{}
+        lspconfig.ruff.setup {}
 
-        lspconfig.lua_ls.setup ({
+        lspconfig.lua_ls.setup({
             on_attach = custom_attach,
             capabilities = capabilities,
             settings = {
@@ -40,7 +41,7 @@ return {
                     workspace = {
                         checkThirdParty = false,
                         library = {
-                          vim.env.VIMRUNTIME,
+                            vim.env.VIMRUNTIME,
                         },
                     },
                     telemetry = { enable = false },
