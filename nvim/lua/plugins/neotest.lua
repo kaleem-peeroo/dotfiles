@@ -12,17 +12,24 @@ return {
             adapters = {
                 require("neotest-python")({
                     runner = "pytest",
-                    python = "/Users/kaleem/venv/bin/python",
+                    python = "/Users/kaleempeeroo/venv/bin/python",
                     args = { "--disable-warnings", "-s" },
                 }),
             },
             status = {
-                virtual_text = true,
+                virtual_text = false,
             },
             output = {
-                open_on_run_with_errors = true,
-                strategy = "split",
-                location = "bottom"
+                enabled = true,
+                open_on_run = "short",
+            },
+            output_panel = {
+                enable = true,
+                open = "botright split | resize 20 | wincmd p",
+            },
+            floating = {
+                max_height = 0.9,
+                max_width = 0.9,
             }
         }
     end,
