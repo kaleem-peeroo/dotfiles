@@ -15,17 +15,32 @@ return {
                     zindex = 200,
                 },
             },
+            test = {
+                mode = "diagnostics",
+                preview = {
+                    type = "split",
+                    relative = "win",
+                    position = "right",
+                    size = 0.3
+                }
+            },
+            diagnostics_buffer = {
+                mode = "diagnostics",
+                filter = {
+                    buf = 0,
+                },
+            },
         }
-    }, -- for default options, refer to the configuration section for custom setup.
+    },
     cmd = "Trouble",
     keys = {
         {
-            "<leader>xx",
-            "<cmd>Trouble diagnostics toggle<cr>",
+            "<leader>xX",
+            "<cmd>Trouble diagnostics toggle focus=true<cr>",
             desc = "Diagnostics (Trouble)",
         },
         {
-            "<leader>xX",
+            "<leader>xx",
             "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
             desc = "Buffer Diagnostics (Trouble)",
         },
