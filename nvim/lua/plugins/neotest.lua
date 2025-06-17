@@ -13,7 +13,7 @@ return {
                 require("neotest-python")({
                     runner = "pytest",
                     python = "/Users/kaleempeeroo/venv/bin/python",
-                    args = { "--disable-warnings" },
+                    args = { "--disable-warnings", "--tb=short" },
                 }),
             },
             status = {
