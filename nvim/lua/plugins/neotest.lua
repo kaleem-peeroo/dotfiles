@@ -13,11 +13,11 @@ return {
                 require("neotest-python")({
                     runner = "pytest",
                     python = "/Users/kaleempeeroo/venv/bin/python",
-                    args = { "--disable-warnings", "-s" },
+                    args = { "--disable-warnings" },
                 }),
             },
             status = {
-                virtual_text = false,
+                virtual_text = true,
             },
             output = {
                 enabled = true,
@@ -30,6 +30,9 @@ return {
             floating = {
                 max_height = 0.9,
                 max_width = 0.9,
+            },
+            summary = {
+                animated = true
             }
         }
     end,
