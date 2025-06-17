@@ -6,4 +6,12 @@ return {
     },
     lazy = false,
     opts = {},
+    keys = {
+        {
+            "<C-e>",
+            ":Refactor extract<CR>",
+            desc = "Extract Function",
+            mode = { "v" },
+        },
+    }
 }
