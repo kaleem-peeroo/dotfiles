@@ -1,0 +1,20 @@
+[mgr]
+ratio = [1, 1, 4]
+
+[[mgr.prepend_keymap]]
+on = "+"
+run = "plugin zoom 1"
+desc = "Zoom in hovered file"
+
+[[mgr.prepend_keymap]]
+on = "-"
+run = "plugin zoom -1"
+desc = "Zoom out hovered file"
+
+[preview]
+max_width = 100000
+max_height = 100000
+image_quality = 90
+
+image_bound = [ 10000, 10000 ]
+

@@ -1,0 +1,7 @@
+[[plugin.deps]]
+use = "yazi-rs/plugins:zoom"
+rev = "5eea960"
+hash = "23d704e18d864036fc65c188bc6b2e47"
+
+[flavor]
+deps = []
