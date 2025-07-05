@@ -26,6 +26,8 @@ return {
 
         lspconfig.ruff.setup {}
 
+        lspconfig.texlab.setup {}
+
         lspconfig.lua_ls.setup({
             on_attach = custom_attach,
             capabilities = capabilities,
