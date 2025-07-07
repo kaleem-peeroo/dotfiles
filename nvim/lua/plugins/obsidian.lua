@@ -16,5 +16,10 @@ return {
                 path = "~/vault 2.0/"
             }
         },
+        new_notes_location = "current_dir",
+        use_advanced_uri = true,
+        ui = {
+            checkboxes = {}
+        }
     }
 }
