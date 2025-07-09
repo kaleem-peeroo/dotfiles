@@ -61,7 +61,7 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 
 -- concel level for obsidian
-vim.opt.conceallevel = 2
+vim.opt.conceallevel = 1
 
 -- Highlight yanked text for 150ms
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -72,15 +72,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.g.python3_host_prog = vim.fn.expand("~/venv/bin/python3")
 
-vim.g.clipboard = {
-    name = 'OSC 52',
-    copy = {
-        ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-        ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-    },
-    paste = {
-        ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-        ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
-    },
-}
-vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
+-- vim.g.clipboard = {
+--     name = 'OSC 52',
+--     copy = {
+--         ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+--         ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+--     },
+--     paste = {
+--         ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+--         ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+--     },
+-- }
+-- vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
