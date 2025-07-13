@@ -32,7 +32,8 @@ return {
                 max_width = 0.9,
             },
             summary = {
-                animated = true
+                animated = true,
+                count = true,
             }
         }
     end,
