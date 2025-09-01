@@ -18,8 +18,19 @@ return {
                     floating_windows = false,              -- if true, images will be rendered in floating markdown windows
                     filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
                     resolve_image_path = function(document_path, image_path, fallback)
+                        local current_dir = document_path:match("(.*/)")
+                        local attachments_path = current_dir .. "attachments/"
+                        -- Check if the attachments directory exists
+                        if vim.fn.isdirectory(vim.fn.expand(attachments_path)) == 1 then
+                            local resolved_path = attachments_path .. image_path
+                            vim.notify("Resolved image path: " .. resolved_path, vim.log.levels.INFO)
+                            -- Return the full path with the image
+                            return resolved_path
+                        else
+                            vim.notify("Attachments dir not found: " .. attachments_path, vim.log.levels.WARN)
+                        end
+
                         return fallback(document_path, image_path)
-                    end
                 },
                 neorg = {
                     enabled = true,
