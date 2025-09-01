@@ -31,6 +31,7 @@ return {
                         end
 
                         return fallback(document_path, image_path)
+                    end
                 },
                 neorg = {
                     enabled = true,
