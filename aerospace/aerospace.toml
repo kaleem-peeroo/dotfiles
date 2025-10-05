@@ -41,18 +41,11 @@ automatically-unhide-macos-hidden-apps = false
 [mode.main.binding]
 
     # All possible keys:
-    # - Letters.        a, b, c, ..., z
-    # - Numbers.        0, 1, 2, ..., 9
-    # - Keypad numbers. keypad0, keypad1, keypad2, ..., keypad9
     # - F-keys.         f1, f2, ..., f20
     # - Special keys.   minus, equal, period, comma, slash, backslash, quote, semicolon,
     #                   backtick, leftSquareBracket, rightSquareBracket, space, enter, esc,
     #                   backspace, tab, pageUp, pageDown, home, end, forwardDelete,
     #                   sectionSign (ISO keyboards only, european keyboards only)
-    # - Keypad special. keypadClear, keypadDecimalMark, keypadDivide, keypadEnter, keypadEqual,
-    #                   keypadMinus, keypadMultiply, keypadPlus
-    # - Arrows.         left, down, up, right
-
     # All possible modifiers: cmd, alt, ctrl, shift
 
     alt-slash = 'layout tiles horizontal vertical'
@@ -80,6 +73,7 @@ automatically-unhide-macos-hidden-apps = false
     alt-5 = 'workspace 5'
     alt-p = 'workspace phd'
     alt-e = 'workspace email'
+    alt-s = 'workspace spotify'
 
     alt-shift-1 = 'move-node-to-workspace 1'
     alt-shift-2 = 'move-node-to-workspace 2'
@@ -88,6 +82,7 @@ automatically-unhide-macos-hidden-apps = false
     alt-shift-5 = 'move-node-to-workspace 5'
     alt-shift-p = 'move-node-to-workspace phd'
     alt-shift-e = 'move-node-to-workspace email'
+    alt-shift-s = 'move-node-to-workspace spotify'
 
     [workspace-to-monitor-force-assignment]
     1 = 'secondary'
