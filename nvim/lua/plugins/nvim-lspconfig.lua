@@ -1,15 +1,14 @@
 return {
     'neovim/nvim-lspconfig',
     config = function()
-        local lspconfig = require('lspconfig')
         local capabilities = vim.lsp.protocol.make_client_capabilities()
-
         capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
         local custom_attach = function(client, bufnr)
         end
 
-        lspconfig.pyright.setup {
+        -- Pyright
+        vim.lsp.config('pyright', {
             on_attach = custom_attach,
             capabilities = capabilities,
             settings = {
@@ -22,18 +21,32 @@ return {
                     },
                 },
             },
-        }
+        })
+        vim.lsp.enable('pyright')
 
-        lspconfig.ruff.setup {}
-
-        lspconfig.rust_analyzer.setup{[
+        -- Ruff
+        vim.lsp.config('ruff', {
             on_attach = custom_attach,
-            capabilities = capabilities
-        ]}
+            capabilities = capabilities,
+        })
+        vim.lsp.enable('ruff')
 
-        lspconfig.texlab.setup {}
+        -- Rust Analyzer
+        vim.lsp.config('rust_analyzer', {
+            on_attach = custom_attach,
+            capabilities = capabilities,
+        })
+        vim.lsp.enable('rust_analyzer')
 
-        lspconfig.lua_ls.setup({
+        -- Texlab
+        vim.lsp.config('texlab', {
+            on_attach = custom_attach,
+            capabilities = capabilities,
+        })
+        vim.lsp.enable('texlab')
+
+        -- Lua LS
+        vim.lsp.config('lua_ls', {
             on_attach = custom_attach,
             capabilities = capabilities,
             settings = {
@@ -42,7 +55,6 @@ return {
                         version = 'LuaJIT',
                     },
                     diagnostics = {
-                        -- enable = true,
                         enable = false,
                     },
                     workspace = {
@@ -55,11 +67,14 @@ return {
                 },
             },
         })
-        -- new server goes here:
-        -- lspconfig.SERVER.setup({
-        --    on_attach = custom_attach,
-        --    capabilities = capabilities
-        --    COPY PASTE SERVER SETTINGS HERE
-        --})
+        vim.lsp.enable('lua_ls')
+
+        -- New server template:
+        -- vim.lsp.config('SERVER', {
+        --     on_attach = custom_attach,
+        --     capabilities = capabilities,
+        --     -- COPY PASTE SERVER SETTINGS HERE
+        -- })
+        -- vim.lsp.enable('SERVER')
     end
 }
