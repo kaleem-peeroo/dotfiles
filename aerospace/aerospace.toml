@@ -81,6 +81,11 @@ automatically-unhide-macos-hidden-apps = false
 
     alt-shift-tab = 'move-node-to-monitor --wrap-around next'
 
+    alt-ctrl-h = 'join-with left'
+    alt-ctrl-j = 'join-with down'
+    alt-ctrl-k = 'join-with up'
+    alt-ctrl-l = 'join-with right'
+
     alt-shift-semicolon = 'mode service'
 
 # 'service' binding mode declaration.
