@@ -7,6 +7,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Force tmux to always start as arm64 even if accidentally launched under Rosetta
+if [[ "$(uname -m)" == "arm64" ]] && [[ "$OSTYPE" == "darwin"* ]]; then
+    alias tmux='arch -arm64 tmux'
+fi
+
 # export ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # If you come from bash you might have to change your $PATH.
@@ -58,6 +63,14 @@ alias ssh3pi="ssh acwh025@3pk1"
 alias ssh5pi="ssh acwh025@5pk1"
 
 alias sshros="ssh city@10.210.8.178"
+
+alias hpc="kitten ssh kaleempeeroo@mac-mini"
+
+
+alias getoutput="rsync -av --progress --update kaleempeeroo@mac-mini:/Users/kaleempeeroo/phd/tools/30_Modelling/output /Users/kaleem/PhD/Tools/30_Modelling"
+alias getoutputplots="rsync -av --progress --update kaleempeeroo@mac-mini:/Users/kaleempeeroo/phd/tools/30_Modelling/output/plots /Users/kaleem/PhD/Tools/30_Modelling/output"
+alias getoutputfor31="rsync -av --progress --update kaleempeeroo@mac-mini:/Users/kaleempeeroo/phd/tools/31_Modelling_Analysis/output /Users/kaleem/PhD/Tools/31_Modelling_Analysis"
+alias getoutputplotsfor31="rsync -av --progress --update kaleempeeroo@mac-mini:/Users/kaleempeeroo/phd/tools/31_Modelling_Analysis/output/plots /Users/kaleem/PhD/Tools/31_Modelling_Analysis/output/"
 
 export nbip=10.210.8.178
 alias sshnb="ssh city@$nbip"
