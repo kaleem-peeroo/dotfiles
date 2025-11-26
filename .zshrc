@@ -7,11 +7,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Force tmux to always start as arm64 even if accidentally launched under Rosetta
-if [[ "$(uname -m)" == "arm64" ]] && [[ "$OSTYPE" == "darwin"* ]]; then
-    alias tmux='arch -arm64 tmux'
-fi
-
 # export ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # If you come from bash you might have to change your $PATH.
