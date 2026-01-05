@@ -1,6 +1,6 @@
 return {
     "linux-cultist/venv-selector.nvim",
-    enabled = false,
+    enabled = true,
     dependencies = {
         "neovim/nvim-lspconfig",
         { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
