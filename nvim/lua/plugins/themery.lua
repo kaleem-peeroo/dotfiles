@@ -11,6 +11,9 @@ return {
                 { name = "Nord",                       colorscheme = "nord" },
                 { name = "Tokyo Dark",                 colorscheme = "tokyodark" },
                 { name = "Moonfly",                    colorscheme = "moonfly" },
+                { name = "Everforest",                 colorscheme = "everforest" },
+                { name = "CyberDream",                 colorscheme = "cyberdream" },
+                { name = "OXO Carbon",                 colorscheme = "oxocarbon" },
 
                 { name = "github_dark",                colorscheme = "github_dark" },
                 { name = "github_dark_default",        colorscheme = "github_dark_default" },
@@ -40,7 +43,6 @@ return {
                 { name = "Tokyo Night Day",            colorscheme = "tokyonight-day" },
                 { name = "Tokyo Night Moon",           colorscheme = "tokyonight-moon" },
 
-                { name = "Everforest",                 colorscheme = "everforest" },
 
             }
         })
