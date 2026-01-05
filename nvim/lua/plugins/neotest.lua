@@ -6,15 +6,17 @@ return {
         "antoinemadec/FixCursorHold.nvim",
         "nvim-tree-sitter/nvim-treesitter",
         "nvim-neotest/neotest-python",
+        "rouge8/neotest-rust"
     },
     config = function()
         require("neotest").setup {
             adapters = {
                 require("neotest-python")({
                     runner = "pytest",
-                    python = "/Users/kaleempeeroo/venv/bin/python",
+                    python = "/Users/kaleem/venv/bin/python",
                     args = { "--disable-warnings", "--tb=short" },
                 }),
+                require("neotest-rust")
             },
             status = {
                 virtual_text = true,
