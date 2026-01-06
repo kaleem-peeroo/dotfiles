@@ -12,7 +12,7 @@ return {
         search_workspace = false,
         search = {
             my_venvs = {
-                command = "fd python$ ~/venv/"
+                command = "fd python$ ~/venv/bin"
             }
         }
     },
