@@ -1,2 +1,6 @@
 nvim/pack/github/start
 nvim/lazy-lock.json
+github-copilot
+raycast/extensions
+simple-update-notifier
+tmux/plugins
