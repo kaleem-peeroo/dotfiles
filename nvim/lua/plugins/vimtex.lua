@@ -5,6 +5,15 @@ return {
         vim.g.vimtex_view_method = 'zathura'
     end,
     keys = {
-        "<leader>v", "<cmd>VimtexView<cr>", desc = "Vimtex View"
+        {
+            "<leader>vc",
+            "<cmd>VimtexCompileSS<cr>",
+            desc = "Vimtex Compile Single Shot"
+        },
+        {
+            "<leader>vt",
+            "<cmd>VimtexTocToggle<cr>",
+            desc = "Vimtex Toggle TOC",
+        }
     }
 }
