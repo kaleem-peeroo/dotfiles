@@ -24,6 +24,22 @@ return {
         })
         vim.lsp.enable('pyright')
 
+        -- GO
+        vim.lsp.config('gopls', {
+            on_attach = custom_attach,
+            capabilities = capabilities,
+            settings = {
+                gopls = {
+                    analyses = {
+                        unusedparams = true,
+                    },
+                    staticcheck = true,
+                    gofumpt = true,
+                },
+            }
+        })
+        vim.lsp.enable('gopls')
+
         -- Ruff
         vim.lsp.config('ruff', {
             on_attach = custom_attach,
