@@ -71,6 +71,7 @@ sketchybar --add item calendar right \
     --set calendar \
     icon=􀉉 \
     label="$(date +'%a %d %b')" \
+    update_freq=3600
 
 sketchybar --add item volume right \
     --set volume \
