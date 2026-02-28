@@ -127,8 +127,7 @@ alias mr="make run"
 
 alias scvenv='source ~/venv/bin/activate'
 
-# nvim aliases
-alias confnvim='nvim ~/.config/nvim/'
+alias sv='source ~/venv/bin/activate'
 
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
