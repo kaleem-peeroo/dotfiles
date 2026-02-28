@@ -1,0 +1,60 @@
+import sys
+
+from pathlib import Path
+
+s_config_dir = Path("~/.config/visidata/")
+s_config_dirpath = s_config_dir.expanduser()
+
+sys.path.insert(0, str(s_config_dirpath))
+
+import dedupe
+import guess_type
+import math
+
+options.quitguard = True
+options.save_filetype = "tsv"
+options.color_key_col = "114 green"
+options.default_width = 30
+options.force_256_colors = False
+options.disp_float_fmt = "{:.4f}"
+
+vd.status("hello from visidatarc")
+
+
+def ci95(values):
+    vals = list(values)
+    if len(vals) < 2:
+        return None
+    mean = sum(vals) / len(vals)
+    se = math.stdev(vals) / math.sqrt(
+        len(vals)
+    )  # requires Python 3.11+; otherwise use statistics.stdev
+    z = 1.96
+    return f"{mean:.3f} ± {z*se:.3f}"
+
+
+vd.aggregator("ci95", ci95, helpstr="mean ± 95% CI (normal approx)")
+
+
+def ci95_lower(values):
+    vals = list(values)
+    if len(vals) < 2:
+        return None
+    m = sum(vals) / len(vals)
+    se = math.stdev(vals) / math.sqrt(len(vals))
+    return m - 1.96 * se
+
+
+vd.aggregator("ci95_lower", ci95_lower, type=float)
+
+
+def ci95_upper(values):
+    vals = list(values)
+    if len(vals) < 2:
+        return None
+    m = sum(vals) / len(vals)
+    se = math.stdev(vals) / math.sqrt(len(vals))
+    return m + 1.96 * se
+
+
+vd.aggregator("ci95_upper", ci95_upper, type=float)
