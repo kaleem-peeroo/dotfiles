@@ -9,7 +9,7 @@ sys.path.insert(0, str(s_config_dirpath))
 
 import dedupe
 import guess_type
-import math
+from confidence_intervals import ci95, ci95_lower, ci95_upper
 
 options.quitguard = True
 options.save_filetype = "tsv"
@@ -18,43 +18,6 @@ options.default_width = 30
 options.force_256_colors = False
 options.disp_float_fmt = "{:.4f}"
 
-vd.status("hello from visidatarc")
-
-
-def ci95(values):
-    vals = list(values)
-    if len(vals) < 2:
-        return None
-    mean = sum(vals) / len(vals)
-    se = math.stdev(vals) / math.sqrt(
-        len(vals)
-    )  # requires Python 3.11+; otherwise use statistics.stdev
-    z = 1.96
-    return f"{mean:.3f} ± {z*se:.3f}"
-
-
-vd.aggregator("ci95", ci95, helpstr="mean ± 95% CI (normal approx)")
-
-
-def ci95_lower(values):
-    vals = list(values)
-    if len(vals) < 2:
-        return None
-    m = sum(vals) / len(vals)
-    se = math.stdev(vals) / math.sqrt(len(vals))
-    return m - 1.96 * se
-
-
+vd.aggregator("ci95", ci95, helpstr="mean ± 95% CI (normal approx)", type=str)
 vd.aggregator("ci95_lower", ci95_lower, type=float)
-
-
-def ci95_upper(values):
-    vals = list(values)
-    if len(vals) < 2:
-        return None
-    m = sum(vals) / len(vals)
-    se = math.stdev(vals) / math.sqrt(len(vals))
-    return m + 1.96 * se
-
-
 vd.aggregator("ci95_upper", ci95_upper, type=float)
