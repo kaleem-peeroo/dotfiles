@@ -4,3 +4,4 @@ github-copilot
 raycast/extensions
 simple-update-notifier
 tmux/plugins
+/visidata/__pycache__
