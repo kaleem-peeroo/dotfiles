@@ -72,10 +72,12 @@ sketchybar --add item calendar right \
     icon=􀉉 \
     label="$(date +'%a %d %b')" \
     update_freq=60 \
-    --subscribe calendar system_woke
+    update=on \
+    --subscribe calendar system_woke front_app_switched \
+    script="$PLUGIN_DIR/calendar.sh"
 
 sketchybar --add item battery right \
-           --set battery update_freq=120 \
+           --set battery update_freq=1 \
                          script="$PLUGIN_DIR/battery.sh" \
            --subscribe battery system_woke power_source_change
 
