@@ -1,5 +1,5 @@
 import sys
-
+import os
 from pathlib import Path
 
 s_config_dir = Path("~/.config/visidata/")
@@ -7,8 +7,15 @@ s_config_dirpath = s_config_dir.expanduser()
 
 sys.path.insert(0, str(s_config_dirpath))
 
+s_venv_path = Path("~/venv/bin/activate").expanduser()
+
+if sys.executable != s_venv_path:
+    os.execl(s_venv_path, s_venv_path, *sys.argv)
+
 import dedupe
 import guess_type
+import pandas
+import pyarrow
 from confidence_intervals import ci95, ci95_lower, ci95_upper
 
 options.quitguard = True
