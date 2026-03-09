@@ -72,6 +72,7 @@ automatically-unhide-macos-hidden-apps = false
     alt-2 = 'workspace 2'
     alt-4 = 'workspace 4'
     alt-5 = 'workspace 5'
+    alt-o = 'workspace obsidian'
     alt-e = 'workspace email'
     alt-s = 'workspace spotify'
 
@@ -79,6 +80,7 @@ automatically-unhide-macos-hidden-apps = false
     alt-shift-2 = 'move-node-to-workspace 2'
     alt-shift-4 = 'move-node-to-workspace 4'
     alt-shift-5 = 'move-node-to-workspace 5'
+    alt-shift-o = 'move-node-to-workspace obsidian'
     alt-shift-e = 'move-node-to-workspace email'
     alt-shift-s = 'move-node-to-workspace spotify'
 
