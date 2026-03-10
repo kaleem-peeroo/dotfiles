@@ -36,6 +36,8 @@ PATH="/opt/homebrew/bin:${PATH}"
 PATH="/opt/homebrew/bin/python3:${PATH}"
 export PATH
 
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # alias ls="ls -alh --color=always"
 alias ls="eza --icons=always -a --hyperlink"
 alias g="git"
@@ -121,17 +123,13 @@ alias tma='tmux attach-session -t'
 
 alias sync_zshrc="cp ~/.zshrc ~/.config/.zshrc;"
 
-# Makefile aliases
-alias mt='make t' # make t instead of make test because make test keeps prompting zsh autosuggestions
-alias mr="make run"
-
-alias scvenv='source ~/venv/bin/activate'
+alias sync_zshrc="cp ~/.zshrc ~/.config/.zshrc;"
 
 alias sv='source ~/venv/bin/activate'
 
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
-alias vd="visidata --config \"$XDG_CONFIG_HOME/visidata/config.py\""
+alias vd="source ~/venv/bin/activate && visidata --config \"$XDG_CONFIG_HOME/visidata/config.py\""
 
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
