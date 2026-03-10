@@ -1,16 +1,9 @@
-# source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
-# export ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -24,6 +17,7 @@ HIST_STAMPS="dd/mm/yyyy"
 plugins=(
     git
 )
+unset MAILCHECK
 
 source $ZSH/oh-my-zsh.sh
 
@@ -63,34 +57,8 @@ alias sshros="ssh city@10.210.8.178"
 
 alias hpc="kitten ssh kaleempeeroo@mac-mini"
 
-
-alias getoutput="rsync -av --progress --update kaleempeeroo@mac-mini:/Users/kaleempeeroo/phd/tools/30_Modelling/output /Users/kaleem/PhD/Tools/30_Modelling"
-alias getoutputplots="rsync -av --progress --update kaleempeeroo@mac-mini:/Users/kaleempeeroo/phd/tools/30_Modelling/output/plots /Users/kaleem/PhD/Tools/30_Modelling/output"
-alias getoutputfor31="rsync -av --progress --update kaleempeeroo@mac-mini:/Users/kaleempeeroo/phd/tools/31_Modelling_Analysis/output /Users/kaleem/PhD/Tools/31_Modelling_Analysis"
-alias getoutputplotsfor31="rsync -av --progress --update kaleempeeroo@mac-mini:/Users/kaleempeeroo/phd/tools/31_Modelling_Analysis/output/plots /Users/kaleem/PhD/Tools/31_Modelling_Analysis/output/"
-
 export nbip=10.210.8.178
 alias sshnb="ssh city@$nbip"
-
-# AutoPerf Scripts
-# AP Monitor
-alias apm="cd ~/AutoPerf/; source .venv/bin/activate; ./bash_scripts/monitor.sh"
-# AP Downloader
-alias apd="cd ~/AutoPerf/; source .venv/bin/activate; ./bash_scripts/download.sh"
-# AP Logs Downloader
-alias apl="cd ~/AutoPerf/; source .venv/bin/activate; ./bash_scripts/logs.sh"
-# AP ESS Downloader
-alias ape="cd ~/AutoPerf/; source .venv/bin/activate; ./bash_scripts/ess.sh"
-
-export vps=51.195.222.194
-alias sshvps="ssh ubuntu@$vps"
-
-export nato_drone="192.168.1.107"
-alias sshdrone="ssh sapience@192.168.1.107"
-
-# ? Grid5000
-alias sshgrid="ssh kpeeroo@access.grid5000.fr"
-alias get_grid_files="scp -r kpeeroo@access.grid5000.fr:/home/kpeeroo/nancy/\*.csv ."
 
 # ? GIT
 alias gpull="git pull"
@@ -103,6 +71,7 @@ alias gc="git commit -m"
 alias gl="git log"
 
 alias v="nvim"
+
 alias m="make"
 alias mt="make test"
 alias mr="make run"
@@ -112,16 +81,14 @@ alias mp="multipass"
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
-# ? AI Aware Server
-alias sshcc="ssh root@82.165.200.179"
-
 # ? TMUX Aliases
 alias tmn='tmux new -s'
 alias tmls='tmux ls'
 alias tmkill='tmux kill-session -t'
 alias tma='tmux attach-session -t'
 
-alias sync_zshrc="cp ~/.zshrc ~/.config/.zshrc;"
+# ? Rust
+alias c='cargo'
 
 alias sync_zshrc="cp ~/.zshrc ~/.config/.zshrc;"
 
@@ -132,7 +99,6 @@ alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 alias vd="source ~/venv/bin/activate && visidata --config \"$XDG_CONFIG_HOME/visidata/config.py\""
 
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-# source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
 
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
