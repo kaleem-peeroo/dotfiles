@@ -7,9 +7,7 @@ def ci95(values):
     if len(vals) < 2:
         return None
     mean = sum(vals) / len(vals)
-    se = statistics.stdev(vals) / math.sqrt(
-        len(vals)
-    )  # requires Python 3.11+; otherwise use statistics.stdev
+    se = statistics.stdev(vals) / math.sqrt(len(vals))
     z = 1.96
     return f"{mean:.4f} ± {z*se:.4f}"
 
