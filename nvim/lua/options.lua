@@ -21,7 +21,7 @@ vim.opt.wrap = true
 vim.opt.completeopt = 'menu,menuone,noselect'
 vim.opt.updatetime = 50
 vim.opt.scrolloff = 1
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = 'no'
 vim.opt.statuscolumn = ""
 vim.opt.statusline = ""
 vim.opt.ruler = false
@@ -71,16 +71,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.g.python3_host_prog = vim.fn.expand("~/venv/bin/python3")
-
--- vim.g.clipboard = {
---     name = 'OSC 52',
---     copy = {
---         ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
---         ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
---     },
---     paste = {
---         ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
---         ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
---     },
--- }
--- vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
