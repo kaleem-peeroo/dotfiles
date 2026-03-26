@@ -36,7 +36,7 @@ automatically-unhide-macos-hidden-apps = false
     inner.vertical =   0
     outer.left =       0
     outer.bottom =     0
-    outer.top =        0
+    outer.top =        30
     outer.right =      0
 
 # 'main' binding mode declaration
@@ -70,16 +70,18 @@ automatically-unhide-macos-hidden-apps = false
 
     alt-1 = 'workspace 1'
     alt-2 = 'workspace 2'
-    alt-4 = 'workspace 4'
-    alt-5 = 'workspace 5'
+    alt-9 = 'workspace 9'
+    alt-0 = 'workspace 0'
+
     alt-o = 'workspace obsidian'
     alt-e = 'workspace email'
     alt-s = 'workspace spotify'
 
     alt-shift-1 = 'move-node-to-workspace 1'
     alt-shift-2 = 'move-node-to-workspace 2'
-    alt-shift-4 = 'move-node-to-workspace 4'
-    alt-shift-5 = 'move-node-to-workspace 5'
+    alt-shift-9 = 'move-node-to-workspace 9'
+    alt-shift-0 = 'move-node-to-workspace 0'
+
     alt-shift-o = 'move-node-to-workspace obsidian'
     alt-shift-e = 'move-node-to-workspace email'
     alt-shift-s = 'move-node-to-workspace spotify'
@@ -101,9 +103,6 @@ automatically-unhide-macos-hidden-apps = false
     r = ['flatten-workspace-tree', 'mode main'] # reset layout
     f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
     backspace = ['close-all-windows-but-current', 'mode main']
-
-    # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-    #s = ['layout sticky tiling', 'mode main']
 
     alt-shift-h = ['join-with left', 'mode main']
     alt-shift-j = ['join-with down', 'mode main']
