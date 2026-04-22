@@ -1,4 +1,5 @@
 ---
+disable: true
 description: >-
   Use this agent when you need to break down complex problems into small,
   actionable, concrete tasks that can be executed sequentially. This agent
