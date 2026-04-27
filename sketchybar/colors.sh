@@ -12,10 +12,10 @@ export WHITE=0xffffffff
 # export ITEM_BG_COLOR=0xff353c3f
 # export ACCENT_COLOR=0xffffffff
 
-# -- Purple Scheme --
-# export BAR_COLOR=0xff140c42
-# export ITEM_BG_COLOR=0xff2b1c84
-# export ACCENT_COLOR=0xffeb46f9
+-- Purple Scheme --
+export BAR_COLOR=0xff140c42
+export ITEM_BG_COLOR=0xff2b1c84
+export ACCENT_COLOR=0xffeb46f9
 
 # -- Red Scheme ---
 # export BAR_COLOR=0xff23090e
@@ -28,10 +28,9 @@ export WHITE=0xffffffff
 # export ACCENT_COLOR=0xff15bdf9
 
 # -- Green Scheme --
-export BAR_COLOR=0xff003315
-export ITEM_BG_COLOR=0xff008c39
-export ACCENT_COLOR=0xff1dfca1
-
+# export BAR_COLOR=0xff003315
+# export ITEM_BG_COLOR=0xff008c39
+# export ACCENT_COLOR=0xff1dfca1
 
 # -- Orange Scheme --
 # export BAR_COLOR=0xff381c02
