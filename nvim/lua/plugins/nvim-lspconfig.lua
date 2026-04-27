@@ -85,6 +85,22 @@ return {
         })
         vim.lsp.enable('lua_ls')
 
+        -- Clangd (C/C++)
+        vim.lsp.config('clangd', {
+            on_attach = custom_attach,
+            capabilities = capabilities,
+            cmd = {
+                "clangd",
+                "--background-index",
+                "--clang-tidy",
+                "--log=verbose",
+            },
+            init_options = {
+                fallbackFlags = { "-std=c++17" },
+            },
+        })
+        vim.lsp.enable('clangd')
+
         -- New server template:
         -- vim.lsp.config('SERVER', {
         --     on_attach = custom_attach,
