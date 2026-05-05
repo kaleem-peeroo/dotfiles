@@ -31,6 +31,7 @@ PATH="/opt/homebrew/bin/python3:${PATH}"
 export PATH
 
 export XDG_CONFIG_HOME="$HOME/.config"
+export PI_CODING_AGENT_DIR="~/.config/pi"
 
 # alias ls="ls -alh --color=always"
 alias ls="eza --icons=always -a --hyperlink"
@@ -133,6 +134,3 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 alias zathura="zathura --plugins-dir $(brew --prefix zathura-pdf-poppler)/lib/zathura"
-
-# Local-only secrets (gitignored)
-[ -f ~/.secrets/opencode.env ] && source ~/.secrets/opencode.env
