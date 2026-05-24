@@ -104,6 +104,14 @@ sketchybar  --add item network right \
                     update_freq=1 \
                     script="$PLUGIN_DIR/network.sh" \
 
+sketchybar  --add item discord right \
+            --set   discord \
+                    icon=󰙯 \
+                    label="0" \
+                    update_freq=5 \
+                    click_script="open -a Discord" \
+                    script="$PLUGIN_DIR/discord.sh"
+
 # -- Center Items --
 
 sketchybar --update
