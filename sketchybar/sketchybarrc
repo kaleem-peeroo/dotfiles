@@ -112,6 +112,14 @@ sketchybar  --add item discord right \
                     click_script="open -a Discord" \
                     script="$PLUGIN_DIR/discord.sh"
 
+sketchybar  --add item outlook right \
+            --set   outlook \
+                    icon=󰴢 \
+                    label="0" \
+                    update_freq=30 \
+                    click_script="open -a 'Microsoft Outlook'" \
+                    script="$PLUGIN_DIR/outlook.sh"
+
 # -- Center Items --
 
 sketchybar --update
