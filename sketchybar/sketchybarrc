@@ -120,6 +120,18 @@ sketchybar  --add item outlook right \
                     click_script="open -a 'Microsoft Outlook'" \
                     script="$PLUGIN_DIR/outlook.sh"
 
+sketchybar --add item spotify right \
+    --set spotify \
+    icon.font="sketchybar-app-font:Regular:16.0" \
+    icon="" \
+    label.drawing=on \
+    label.padding_left=2 \
+    label.padding_right=5 \
+    update_freq=1 \
+    click_script="osascript -e 'tell application \"Spotify\" to playpause'" \
+    script="$PLUGIN_DIR/spotify.sh" \
+    --subscribe spotify front_app_switched
+
 # -- Center Items --
 
 sketchybar --update
