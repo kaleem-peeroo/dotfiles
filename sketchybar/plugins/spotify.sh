@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Lockfile to prevent concurrent instances stacking up
+LOCKFILE="/tmp/sketchybar_spotify.lock"
+if [ -f "$LOCKFILE" ] && kill -0 "$(cat "$LOCKFILE" 2>/dev/null)" 2>/dev/null; then
+  exit 0
+fi
+echo $$ > "$LOCKFILE"
+trap 'rm -f "$LOCKFILE"' EXIT
+
 SPOTIFY_DATA=$(osascript -e '
 tell application "System Events"
     set isRunning to (count of (every process whose name is "Spotify")) > 0
