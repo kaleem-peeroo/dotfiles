@@ -13,7 +13,7 @@ return {
             adapters = {
                 require("neotest-python")({
                     runner = "pytest",
-                    python = "/Users/kaleem/venv/bin/python",
+                    python = "/Users/kaleempeeroo/venv/bin/python",
                     args = { "--disable-warnings", "--tb=short" },
                 }),
                 require("neotest-rust")

@@ -12,7 +12,7 @@ return {
         workspaces = {
             {
                 name = "vault 2.0",
-                path = "~/vault 2.0/"
+                path = "~/obsidian_vaults/vault 2.0",
             }
         },
         new_notes_location = "current_dir",
