@@ -87,12 +87,6 @@ sketchybar --add item cpu right \
     update_freq=2 \
     script="$PLUGIN_DIR/cpu.sh" \
 
-sketchybar --add item cpu_temp right \
-    --set cpu_temp \
-    icon=󰔏\
-    update_freq=5 \
-    script="$PLUGIN_DIR/cpu_temp.sh" \
-
 sketchybar  --add item memory right \
             --set   memory \
                     icon=􀫦\
