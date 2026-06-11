@@ -10,15 +10,15 @@ Tools configured:
 - **Shell**: zsh (`.zshrc`, oh-my-zsh, powerlevel10k, zoxide, fzf)
 - **Terminals**: alacritty, kitty, wezterm, iterm2
 - **Window manager**: aerospace (macOS tiling WM, alt-modifier keybindings)
-- **Menu bar**: sketchybar with 17 custom shell plugins
-- **Editor**: nvim (lua/), lazy.nvim, 40+ plugin configs, 12 themes
+- **Menu bar**: sketchybar with 16 custom shell plugins
+- **Editor**: nvim (lua/), lazy.nvim, 46 plugin configs, 13 themes
 - **Terminal multiplexer**: tmux (tpm, 8 plugins, C-a prefix)
 - **AI coding**: opencode (pi-coding-agent at `opencode/` with custom skills)
 - **File manager**: yazi (TUI with zoom plugin)
 - **Data browser**: visidata (Python config, custom aggregators)
 - **Others**: lazygit, ncspot, qBittorrent, zathura, raycast, iina, wandb
 
-**Scale**: ~11,900 total lines across config files. Most actively maintained: sketchybar (10/30 recent commits), tmux (4), nvim (3)
+**Scale**: ~11,900 total lines across config files (nvim: 1,277, sketchybar: 669). Most actively maintained: sketchybar, tmux, nvim.
 
 ## Directory Structure
 
@@ -30,21 +30,23 @@ gh/                  — GitHub CLI config (config.yml, hosts.yml)
 kitty/               — Kitty terminal config
 lazygit/             — Lazygit TUI config
 ncspot/              — Spotify TUI client config
-nvim/                — Neovim config (~280 lines)
+nvim/                — Neovim config (~1,277 lines)
   init.lua           — Entry point, lazy.nvim bootstrap
   lua/
     options.lua      — Vim options
     keymaps.lua      — Key mappings
-    plugins/         — 40+ per-plugin config files
-    themes/          — 12 color themes
+    plugins/         — 46 per-plugin config files
+    themes/          — 13 color themes
 nvim/pack/github/    — Legacy vim-pack plugin dir (just copilot.vim)
 opencode/            — pi-coding-agent config (opencode.json, package.json)
   skills/            — Custom agent skills (caveman, find-skills)
-sketchybar/          — macOS menu bar config (~200 lines)
-  colors.sh          — 8 color scheme presets (teal, gray, purple, red, blue, green, orange, yellow)
-  sketchybarrc       — Main bar config (items, layout, styling)
-  plugins/           — 17 widget plugins (aerospace, battery, cpu, discord, network, spotify, etc.)
-tmux/                — Tmux config + tpm plugins/ (8 plugins: yank, navigator, battery, cpu, network, continuum, resurrect, sessionx)
+sketchybar/          — macOS menu bar config (~670 lines)
+  colors.sh          — 8 color scheme presets
+  sketchybarrc       — Default (non-notch) bar config
+  sketchybarrc.notch — Notch-aware config (q/e positions, notch_width=180)
+  sketchybarrc.nonotch — Legacy non-notch config
+  plugins/           — 16 widget scripts
+tmux/                — Tmux config + tpm plugins/
 visidata/            — VisiData CSV/data browser config (Python)
 yazi/                — Yazi file manager config + plugins/
   yazi.toml          — Main config
@@ -58,46 +60,36 @@ raycast/             — Raycast launcher + extensions (4 extension dirs)
 
 ## Commands
 
-No build/test/lint commands — this is config-only. Relevant workflows:
+No build/test/lint — pure config. Key workflows:
 
 ```bash
-# Sync zshrc to this repo
+# Sync zshrc to repo
 alias sync_zshrc="cp ~/.zshrc ~/.config/.zshrc;"
 
-# Git (common aliases via .zshrc)
-g          # git
+# Git
 gs         # git status
 gl         # git log
-gc "<msg>" # git commit -m
+gc "msg"   # git commit -m
 gpull      # git pull
 gpush      # git push
 diffw      # git diff --color-words
-ga         # git add
-gcl        # git clone
 lg         # lazygit
 
-# Config reload commands
-tmux: source-file ~/.config/tmux/tmux.conf  # or prefix + r
-sketchybar: sketchybar --reload
-aerospace: reload-config via mode service (alt-; then r)
-nvim: :Lazy! sync; :Lazy! check
+# Reload commands
+tmux:         prefix + r  (or source-file ~/.config/tmux/tmux.conf)
+sketchybar:   sketchybar --reload
+aerospace:    alt-; r (service mode → reload-config)
+nvim:         :Lazy! sync; :Lazy! check
 
-# Terminal multiplexer
-tmn <name>  # tmux new -s
-tma <name>  # tmux attach-session -t
-tmls        # tmux ls
-tmkill      # tmux kill-session -t
+# Terminal
+tmn <name>    # tmux new -s
+tma <name>    # tmux attach-session -t
+tmkill        # tmux kill-session -t
 
-# Other aliases found in .zshrc
-v           # nvim
-c           # cargo
-sc          # source
-py          # python3
-m           # make
-mt          # make test
-mr          # make run
-mp          # multipass
-vd          # visidata with custom config
+# Shell aliases
+v   nvim        | c   cargo
+sc  source      | py  python3
+m   make        | vd  visidata (with config)
 ```
 
 ## Code Style & Conventions
@@ -109,25 +101,30 @@ vd          # visidata with custom config
   tmux: updated extended keys to work with csi-u for pi
   zshrc: Added PI_CODING_AGENT_DIR config dir
   ```
-- **Most active tools in git history**: sketchybar (10 commits), tmux (4), nvim (3), opencode (2), zshrc (2)
-- **zshrc**: Aliases grouped with `# ? SECTION` comments. Uses `export` for env vars. `eval "$(...)"` for shell integrations. vi mode via `bindkey -v` (commented out). Uses oh-my-zsh with `zstyle ':omz:update' mode auto`.
-- **nvim**: Plugin configs in `lua/plugins/<name>.lua`. One file per plugin. Themes in `lua/themes/`. Uses lazy.nvim with `{ import = "plugins" }` and `{ import = "themes" }`.
-- **sketchybar**: Shell-based. Colors as hex `0xffRRGGBB` in `colors.sh`. Schemes are block-commented, active one uncommented. 8 presets. Currently Purple Scheme.
-- **aerospace**: TOML. All keybindings use `alt` modifier. Named workspaces (obsidian, email, spotify). Vim-style hjkl navigation. Service mode (alt-;) for advanced ops.
-- **tmux**: Prefix is `C-a` (not default `C-b`). vim copy mode. Extended keys in csi-u format. Status bar at bottom with battery, RAM, network, CPU indicators. Catppuccin mocha colors.
-- **visidata**: Python config. Imports custom modules (dedupe, confidence_intervals). Custom aggregators (`mean_ci95`).
+- **Commit freq**: sketchybar dominates (10/20 recent), tmux (4), nvim (3), opencode/zshrc (2 each)
+- **zshrc**: Aliases grouped with `# ? SECTION` comments. `export` for env vars, `eval "$(...)"` for shell integrations. Uses oh-my-zsh (`zstyle ':omz:update' mode auto`). vi-mode commented out.
+- **nvim**: Plugin configs in `lua/plugins/<name>.lua` (46 files), themes in `lua/themes/` (13 files). Auto-loads via lazy.nvim `{ import = "plugins" }` / `{ import = "themes" }`.
+- **sketchybar**: Shell-based. Colors as `0xffRRGGBB` in `colors.sh` — 8 presets, active one uncommented. Currently Purple: `0xff140c42 / 0xff2b1c84 / 0xffeb46f9`.
+  - Badge-count plugins use `lsappinfo info -only StatusLabel <bundle-id>`
+  - App-font icons via `icon.font="sketchybar-app-font:Regular:16.0"` + `icon=":icon_name:"`
+  - Known bundle IDs: Discord `com.hnc.Discord`, Outlook `com.microsoft.Outlook`, Teams `com.microsoft.teams2`
+- **aerospace**: TOML, `alt` modifier. Named workspaces (obsidian, email, spotify). Vim-style hjkl. Service mode (alt-;) for reload/reset.
+- **tmux**: Prefix `C-a` (not `C-b`). vim copy mode, csi-u extended keys. Bottom status bar with battery/RAM/network/CPU. Catppuccin mocha.
+- **visidata**: Python. Custom modules (dedupe, confidence_intervals). Custom `mean_ci95` aggregator.
 - **No Makefile, package.json (except opencode), or build tooling.**
 
 ## Architecture Notes
 
 - **`~/.config` IS the git repo** — files are directly at `~/.config/<tool>/`. The `.zshrc` is copied into the repo via `sync_zshrc` alias (it lives at `~/.zshrc` but gets synced to `~/.config/.zshrc`). Only 3 top-level files: `.zshrc`, `.inputrc`, `.gitignore`.
-- **sketchybar ↔ aerospace integration**: Workspace changes trigger `exec-on-workspace-change` in aerospace which fires `aerospace_workspace_change` event to sketchybar. The `space.sh` plugin and `aerospace.sh` plugin handle display. Borders also integrated via `after-startup-command`. This is the key cross-tool integration — changing one likely requires updating the other.
-- **nvim** uses lazy.nvim with auto-import — adding a new plugin config to `lua/plugins/` or theme to `lua/themes/` auto-loads it. Copilot is dual-configured: `copilot_cmp.lua` + `zbirenbaum_copilot.lua` for completions, plus legacy `pack/github/start/copilot.vim`.
-- **tmux ↔ nvim integration**: vim-tmux-navigator installed in both tmux (via tpm) and nvim (separate `lua/plugins/vim-tmux-navigator.lua`). Enables seamless pane navigation between nvim and tmux panes.
-- **opencode** (pi-coding-agent): Node-based runtime. Custom skills in `opencode/skills/` (caveman, find-skills). Has its own `opencode/AGENTS.md`.
-- **Color scheme system**: 8 complete presets (teal, gray, purple, red, blue, green, orange, yellow) in `sketchybar/colors.sh`. Only one active at a time via comment toggling. Currently Purple: `0xff140c42` / `0xff2b1c84` / `0xffeb46f9`.
-- **aerospace**: Gaps with top-only outer gap (30). Normalization flatten + opposite-orientation enabled. Mouse follows focus on monitor and window change. Service mode (alt-;) with volume controls, reset layout, floating toggle.
-- **.gitignore** full list: `nvim/pack/github/start/`, `nvim/lazy-lock.json`, `github-copilot/`, `raycast/extensions/`, `simple-update-notifier/`, `tmux/plugins/`, `visidata/__pycache__`.
+- **sketchybar has 3 config files**: `sketchybarrc` (default/non-notch), `sketchybarrc.notch` (notch-aware with `q`/`e` positions + `notch_width=180`), `sketchybarrc.nonotch` (legacy). Switch via `cp` or symlink per README.
+- **sketchybar ↔ aerospace**: `exec-on-workspace-change` in aerospace fires `aerospace_workspace_change` event to sketchybar. Handled by `space.sh` + `aerospace.sh` plugins. Borders via `after-startup-command`. Key cross-tool coupling.
+- **Badge-count plugin pattern** (discord, outlook, teams): `lsappinfo info -only StatusLabel <bundle-id>` parsed for `"label"="N"`, falls back to "0" when empty. Uses `$WHITE` for no-unreads, brand color for unreads.
+- **App-font icons**: `sketchybar-app-font.ttf` provides SF Symbols–style app logos. Use `icon.font="sketchybar-app-font:Regular:16.0"` + `icon=":name:"`. Icon names defined in `plugins/icon_map_fn.sh`.
+- **nvim**: lazy.nvim auto-imports from `lua/plugins/` (46 files) and `lua/themes/` (13 files). Copilot dual-configured: `copilot_cmp.lua` + `zbirenbaum_copilot.lua`, plus legacy `pack/github/start/copilot.vim`.
+- **tmux ↔ nvim**: vim-tmux-navigator in both (tmux via tpm, nvim via `lua/plugins/vim-tmux-navigator.lua`).
+- **opencode**: Node-based. Custom skills in `opencode/skills/` (caveman, find-skills). Own `opencode/AGENTS.md`.
+- **aerospace**: Gaps with top-only outer gap (30). Flatten + opposite-orientation normalization. Mouse follows focus. Service mode (alt-;) with volume, reset, floating.
+- **.gitignore**: `nvim/pack/github/start/`, `nvim/lazy-lock.json`, `github-copilot/`, `raycast/extensions/`, `simple-update-notifier/`, `tmux/plugins/`, `visidata/__pycache__`.
 
 ## Testing
 
@@ -140,8 +137,8 @@ No test framework. Config changes verified manually by reloading the tool:
 
 ## Git Workflow
 
-- **Branch**: `master` only (no feature branches — all commits direct to master)
+- **Branch**: `master` only — all commits direct
 - **Remote**: `origin git@github.com:kaleem-peeroo/dotfiles.git`
-- **Commit style**: `<tool-name>: <imperative-description>`. Single-line only, no body. No tags, no releases.
-- **30 commits on master** (repo spans ~2 years). Earliest commits show opencode setup, recent commits focus on sketchybar (most active).
-- **Push pattern**: Direct to `origin/master`. No PR workflow.
+- **Commit style**: `<tool-name>: <imperative-description>`. Single-line, no body. No tags/releases.
+- **257 commits** spanning ~2 years. Earliest: nvim/tmux setup. Recent: sketchybar active dev.
+- **Push**: Direct to `origin/master`. No PR workflow.
