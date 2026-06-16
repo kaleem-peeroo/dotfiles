@@ -13,7 +13,10 @@ Tools configured:
 - **Menu bar**: sketchybar with 16 custom shell plugins
 - **Editor**: nvim (lua/), lazy.nvim, 46 plugin configs, 13 themes
 - **Terminal multiplexer**: tmux (tpm, 8 plugins, C-a prefix)
-- **AI coding**: opencode (pi-coding-agent at `opencode/` with custom skills)
+- **AI coding**: pi-coding-agent (config at `~/.pi/agent/`, git: `kaleem-peeroo/Pi-Config`)
+  - **232 specialized agents** installed from agency-agents (engineering, security, marketing, design, etc.)
+  - **/agents** command lists categories; auto-injects roster at session start
+  - **select-agency-agent skill** for delegating tasks to specialists
 - **File manager**: yazi (TUI with zoom plugin)
 - **Data browser**: visidata (Python config, custom aggregators)
 - **Others**: lazygit, ncspot, qBittorrent, zathura, raycast, iina, wandb
@@ -39,7 +42,6 @@ nvim/                — Neovim config (~1,277 lines)
     themes/          — 13 color themes
 nvim/pack/github/    — Legacy vim-pack plugin dir (just copilot.vim)
 opencode/            — pi-coding-agent config (opencode.json, package.json)
-  skills/            — Custom agent skills (caveman, find-skills)
 sketchybar/          — macOS menu bar config (~670 lines)
   colors.sh          — 8 color scheme presets
   sketchybarrc       — Default (non-notch) bar config
@@ -102,6 +104,7 @@ m   make        | vd  visidata (with config)
   zshrc: Added PI_CODING_AGENT_DIR config dir
   ```
 - **Commit freq**: sketchybar dominates (10/20 recent), tmux (4), nvim (3), opencode/zshrc (2 each)
+- **Pi-Config repo** (`~/.pi/agent/`, remote: `kaleem-peeroo/Pi-Config`): same `<tool-name>: <description>` style. Recent: `install 232 agency-agents + agent-roster extension`
 - **zshrc**: Aliases grouped with `# ? SECTION` comments. `export` for env vars, `eval "$(...)"` for shell integrations. Uses oh-my-zsh (`zstyle ':omz:update' mode auto`). vi-mode commented out.
 - **nvim**: Plugin configs in `lua/plugins/<name>.lua` (46 files), themes in `lua/themes/` (13 files). Auto-loads via lazy.nvim `{ import = "plugins" }` / `{ import = "themes" }`.
 - **sketchybar**: Shell-based. Colors as `0xffRRGGBB` in `colors.sh` — 8 presets, active one uncommented. Currently Purple: `0xff140c42 / 0xff2b1c84 / 0xffeb46f9`.
@@ -123,6 +126,7 @@ m   make        | vd  visidata (with config)
 - **nvim**: lazy.nvim auto-imports from `lua/plugins/` (46 files) and `lua/themes/` (13 files). Copilot dual-configured: `copilot_cmp.lua` + `zbirenbaum_copilot.lua`, plus legacy `pack/github/start/copilot.vim`.
 - **tmux ↔ nvim**: vim-tmux-navigator in both (tmux via tpm, nvim via `lua/plugins/vim-tmux-navigator.lua`).
 - **opencode**: Node-based. Custom skills in `opencode/skills/` (caveman, find-skills). Own `opencode/AGENTS.md`.
+- **pi-subagents frontmatter**: Uses custom regex parser (not YAML). `extensions: false` / `skills: false` become strings `"false"`, causing crashes or bogus extension/skill lookups. Omit both to inherit defaults.
 - **aerospace**: Gaps with top-only outer gap (30). Flatten + opposite-orientation normalization. Mouse follows focus. Service mode (alt-;) with volume, reset, floating.
 - **.gitignore**: `nvim/pack/github/start/`, `nvim/lazy-lock.json`, `github-copilot/`, `raycast/extensions/`, `simple-update-notifier/`, `tmux/plugins/`, `visidata/__pycache__`.
 
