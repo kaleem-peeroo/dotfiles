@@ -1,4 +1,5 @@
 return {
     "echasnovski/mini.completion",
-    version = '*'
+    version = '*',
+    enabled = false
 }
