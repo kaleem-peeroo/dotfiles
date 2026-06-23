@@ -2,5 +2,5 @@ return {
     'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
     event = 'InsertEnter',
-    enabled = false
+    enabled = false,
 }
