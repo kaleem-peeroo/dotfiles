@@ -1,6 +1,5 @@
 return {
     -- dims out unused functions, variables, parameters, etc
-    --
     "zbirenbaum/neodim",
     event = "LspAttach",
     config = function()

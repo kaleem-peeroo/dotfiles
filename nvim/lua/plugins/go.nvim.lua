@@ -1,4 +1,5 @@
 return {
+    -- anything and everything related to go
     "ray-x/go.nvim",
     dependencies = {
         "ray-x/guihua.lua",

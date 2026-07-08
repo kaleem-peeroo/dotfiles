@@ -1,20 +1,21 @@
 return {
+    -- animates the cursor
     'echasnovski/mini.animate',
     lazy = false,
     version = '*',
     config = function()
-    require('mini.animate').setup({
-        cursor = {
-            enable = true,
-            timing = function(_, n) return 100 / n end,
-        },
-        scroll = {
-            enable = false,
-            timing = function(_, n) return 100 / n end,
-        },
-        resize = {
-            enable = false
-        }
-    })
+        require('mini.animate').setup({
+            cursor = {
+                enable = true,
+                timing = function(_, n) return 100 / n end,
+            },
+            scroll = {
+                enable = false,
+                timing = function(_, n) return 100 / n end,
+            },
+            resize = {
+                enable = false
+            }
+        })
     end
 }

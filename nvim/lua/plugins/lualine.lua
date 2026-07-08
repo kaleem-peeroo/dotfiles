@@ -1,4 +1,6 @@
 return {
+    -- statusline plugin customisation. Status line is the line at the top.
+    -- This config shows branch on left and full path on the right.
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()

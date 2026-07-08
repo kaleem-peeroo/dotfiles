@@ -1,4 +1,5 @@
 return {
+    -- image support for neovim using kitty graphics protocol
     "3rd/image.nvim",
     build = false,
     opts = {
