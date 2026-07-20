@@ -4,10 +4,10 @@ vim.opt.titlestring = '%t'
 
 -- Indentation and Formatting Settings
 vim.opt.autoindent = true
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
 vim.opt.smarttab = true
-vim.opt.tabstop = 4
+vim.opt.tabstop = 2
 -- vim.opt.iskeyword = '_'
 
 -- Display Settings
@@ -65,9 +65,9 @@ vim.opt.conceallevel = 1
 
 -- Highlight yanked text for 150ms
 vim.api.nvim_create_autocmd('TextYankPost', {
-    callback = function()
-        vim.highlight.on_yank()
-    end
+  callback = function()
+    vim.highlight.on_yank()
+  end
 })
 
 vim.g.python3_host_prog = vim.fn.expand("~/venv/bin/python3")
