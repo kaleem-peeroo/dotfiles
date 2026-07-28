@@ -1,7 +1,7 @@
 if [[ -n $__ZSH_CONFIG_LOADED ]]; then
   return
 fi
-typeset -r __ZSH_CONFIG_LOADED=1
+__ZSH_CONFIG_LOADED=1
 
 source $HOME/.config/zsh/init/env.zsh
 source $HOME/.config/zsh/init/path.zsh

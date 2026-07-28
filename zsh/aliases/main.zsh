@@ -14,6 +14,7 @@ alias pi='NODE_NO_WARNINGS=1 pi'
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 alias scvenv='source ~/venv/bin/activate'
 alias confnvim='nvim ~/.config/nvim/'
+alias reload="unset __ZSH_CONFIG_LOADED && exec zsh"
 alias sync_zshrc="cp ~/.zshrc ~/.config/.zshrc"
 
 alias ..="cd .."
@@ -36,6 +37,8 @@ alias tmn='tmux new -s'
 alias tmls='tmux ls'
 alias tmkill='tmux kill-session -t'
 alias tma='tmux attach-session -t'
+
+alias hd="herdr"
 
 alias apm="cd ~/AutoPerf/; source .venv/bin/activate; ./bash_scripts/monitor.sh"
 alias apd="cd ~/AutoPerf/; source .venv/bin/activate; ./bash_scripts/download.sh"
