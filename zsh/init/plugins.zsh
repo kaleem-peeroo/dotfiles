@@ -8,7 +8,7 @@ zstyle ':omz:update' mode auto
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="dd/mm/yyyy"
-plugins=(git)
+plugins=(git fzf-tab)
 source $ZSH/oh-my-zsh.sh
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
