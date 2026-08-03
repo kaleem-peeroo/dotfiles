@@ -2,7 +2,10 @@ eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
 eval "$(omp completions zsh)"
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-source <(ng completion script)
+local _ng_bins=("$NVM_DIR"/versions/node/*/bin/ng(N))
+if (( ${#_ng_bins} )); then
+  source <(ng completion script)
+fi
 
 source $HOME/.config/zsh/functions/yank-output.zsh
 
