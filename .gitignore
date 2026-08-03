@@ -5,3 +5,8 @@ raycast/extensions
 simple-update-notifier
 tmux/plugins
 /visidata/__pycache__
+/herdr/.plugins.lock
+/herdr/herdr-client.log
+/herdr/herdr-server.log
+/herdr/release-notes.json
+/herdr/session.json
