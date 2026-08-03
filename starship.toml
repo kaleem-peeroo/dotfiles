@@ -1,3 +1,8 @@
+# AWS note: the `aws` module stays enabled but only renders when AWS is
+# actively in use (env vars like AWS_REGION/AWS_PROFILE, or a profile with
+# creds). On 2026-08-03 the `[default]` sections in ~/.aws/config and
+# ~/.aws/credentials were stripped so the module no longer triggers off
+# static region/root-credential files at rest.
 add_newline = true
 
 [character]
