@@ -1,4 +1,5 @@
-bindkey '^\t' end-of-line
+bindkey -M emacs '^I' _zsh_tab_accept
+bindkey -M viins '^I' _zsh_tab_accept
 bindkey -v
 bindkey "^N" history-search-forward
 bindkey "^P" history-search-backward

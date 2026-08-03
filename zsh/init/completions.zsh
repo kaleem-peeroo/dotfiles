@@ -8,6 +8,7 @@ if (( ${#_ng_bins} )); then
 fi
 
 source $HOME/.config/zsh/functions/yank-output.zsh
+source $HOME/.config/zsh/functions/tab-accept.zsh
 
 # fzf-tab: show descriptions, colorize, disable menu so prefix is captured.
 zstyle ':completion:*:descriptions' format '[%d]'
