@@ -41,3 +41,8 @@ export ACCENT_COLOR=0xff15bdf9
 # export BAR_COLOR=0xff2d2b02
 # export ITEM_BG_COLOR=0xff8e7e0a
 # export ACCENT_COLOR=0xfff7fc17
+
+# -- Herdr agent status colors --
+export AGENT_WORKING=0xff15bdf9
+export AGENT_WAITING=0xffff2453
+export AGENT_DONE=0x66ffffff
