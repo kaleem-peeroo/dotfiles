@@ -73,6 +73,12 @@ sketchybar  --add item memory e \
                     update_freq=2 \
                     script="$PLUGIN_DIR/memory.sh" \
 
+sketchybar --add item cpu_temp e \
+    --set cpu_temp \
+    icon=󰔏\
+    update_freq=5 \
+    script="$PLUGIN_DIR/cpu_temp.sh" \
+
 sketchybar --add item volume e \
     --set volume \
     icon=􀊠 \
