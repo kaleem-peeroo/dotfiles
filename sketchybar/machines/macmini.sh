@@ -1,65 +1,4 @@
-#!/bin/bash
-
-source "$CONFIG_DIR/colors.sh"
-
-PLUGIN_DIR="$CONFIG_DIR/plugins"
-
-sketchybar --bar position=top \
-    height=30 \
-    blur_radius=30 \
-    color=$BAR_COLOR \
-    sticky=off \
-    padding_left=10 \
-    padding_right=10 \
-
-default=(
-    updates=when_shown
-    
-    padding_left=5
-    padding_right=5
-
-    background.color=$ITEM_BG_COLOR 
-    background.corner_radius=5
-    background.height=20
-
-    icon.font="Hack Nerd Font:Semibold:15.0"
-    icon.color=$WHITE
-    icon.padding_left=10
-    icon.padding_right=4
-
-    label.font="Hack Nerd Font:Semibold:15.0"
-    label.color=$WHITE
-    label.padding_left=10
-    label.padding_right=4
-)
-sketchybar --default "${default[@]}"
-
-sketchybar --add item front_app left \
-    --set front_app background.color=$ACCENT_COLOR \
-                    icon.color=$BAR_COLOR \
-                    icon.font="sketchybar-app-font:Regular:16.0" \
-                    label.color=$BAR_COLOR \
-                    script="$PLUGIN_DIR/front_app.sh" \
-    --subscribe front_app front_app_switched
-
-# -- Aerospace compatibility --
-sketchybar --add event aerospace_workspace_change
-
-for sid in $(aerospace list-workspaces --all); do
-    sketchybar --add item space.$sid left \
-        --subscribe space.$sid aerospace_workspace_change \
-        --set space.$sid \
-        background.color=$ACCENT_COLOR \
-        background.corner_radius=5 \
-        background.height=20 \
-        background.drawing=off \
-        label="$sid" \
-        icon="" \
-        click_script="aerospace workspace $sid" \
-        script="$CONFIG_DIR/plugins/aerospace.sh $sid"
-done
-
-# -- Right Items --
+# -- Right Items (Mac mini, no notch) --
 sketchybar --add item clock right \
     --set clock \
     icon=􀐫 \
@@ -86,6 +25,12 @@ sketchybar --add item cpu right \
     icon=􀫥\
     update_freq=2 \
     script="$PLUGIN_DIR/cpu.sh" \
+
+sketchybar --add item cpu_temp right \
+    --set cpu_temp \
+    icon=󰔏\
+    update_freq=5 \
+    script="$PLUGIN_DIR/cpu_temp.sh" \
 
 sketchybar  --add item memory right \
             --set   memory \
@@ -136,6 +81,11 @@ sketchybar --add item spotify right \
     script="$PLUGIN_DIR/spotify.sh" \
     --subscribe spotify front_app_switched
 
-# -- Center Items --
-
-sketchybar --update
+# -- Herdr agents --
+sketchybar --add item herdr right \
+    --set herdr \
+    icon.drawing=off \
+    label=" 0 󰂚 0 󰗠 0" \
+    label.color=$WHITE \
+    update_freq=2 \
+    script="$PLUGIN_DIR/herdr_agents.sh"

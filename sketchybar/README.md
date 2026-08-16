@@ -1,28 +1,24 @@
 # SketchyBar Config
 
-Two config files for different machines:
+A single config for two machines, selected at runtime by machine name:
 
-| File | Machine | Notch handling |
+| Machine | ComputerName | Layout |
 |---|---|---|
-| `sketchybarrc.notch` | MacBook (has notch) | `notch_width=180`, items use `q`/`e` positions to wrap around notch |
-| `sketchybarrc` (default) | Mac Mini (no notch) | All items at `right` position, includes CPU, CPU temp |
+| MacBook Air | `MacBook Air` | Notch bar (`notch_width=180`, items at `e`/`q` positions), includes battery |
+| Mac mini | `Kaleem's Mac mini` | Plain top bar, all items at `right`, includes CPU + CPU temp |
 
-## Switching configs
+`sketchybarrc` detects the machine from `scutil --get ComputerName` and sources the matching snippet from `machines/`:
+
+- `machines/macbook.sh` — MacBook Air right-side items
+- `machines/macmini.sh` — Mac mini right-side items
+- `machines/detect.sh` — the detection logic (tested in `tests/machine_detect_test.sh`)
+
+Unknown machines default to the Mac mini layout. See `docs/adr/0001-single-config-machine-detection.md` for the reasoning.
+
+## Reload
 
 ```bash
-# For MacBook — notch-aware
-cp ~/.config/sketchybar/sketchybarrc.notch ~/.config/sketchybar/sketchybarrc && sketchybar --reload
-
-# For Mac Mini — no notch
-# Current sketchybarrc is already the non-notch config, just reload
 sketchybar --reload
 ```
 
-Or symlink:
-```bash
-# Notch
-ln -sf ~/.config/sketchybar/sketchybarrc.notch ~/.config/sketchybar/sketchybarrc && sketchybar --reload
-
-# No notch (already active)
-cp ~/.config/sketchybar/sketchybarrc ~/.config/sketchybar/sketchybarrc && sketchybar --reload
-```
+No switching needed — the config picks the right layout automatically on each machine.
