@@ -23,12 +23,12 @@ default=(
     background.corner_radius=5
     background.height=20
 
-    icon.font="Hack Nerd Font:Semibold:15.0"
+    icon.font="Hack Nerd Font:Bold:15.0"
     icon.color=$WHITE
     icon.padding_left=10
     icon.padding_right=4
 
-    label.font="Hack Nerd Font:Semibold:15.0"
+    label.font="Hack Nerd Font:Bold:15.0"
     label.color=$WHITE
     label.padding_left=10
     label.padding_right=4
@@ -136,6 +136,30 @@ sketchybar --add item spotify q \
     click_script="osascript -e 'tell application \"Spotify\" to playpause'" \
     script="$PLUGIN_DIR/spotify.sh" \
     --subscribe spotify front_app_switched
+
+# -- Herdr agents --
+sketchybar --add item herdr_run q \
+    --set herdr_run \
+    icon= \
+    icon.color=$AGENT_WORKING \
+    label="0" \
+    label.color=$AGENT_WORKING \
+    update_freq=2 \
+    script="$PLUGIN_DIR/herdr_agents.sh"
+
+sketchybar --add item herdr_wait q \
+    --set herdr_wait \
+    icon= \
+    icon.color=$AGENT_WAITING \
+    label="0" \
+    label.color=$AGENT_WAITING
+
+sketchybar --add item herdr_done q \
+    --set herdr_done \
+    icon= \
+    icon.color=$AGENT_DONE \
+    label="0" \
+    label.color=$AGENT_DONE
 
 # -- Center Items --
 
