@@ -1,6 +1,10 @@
 #!/bin/bash
 source "$CONFIG_DIR/colors.sh"
 
+ICON_RUNNING=
+ICON_WAITING=󰂚
+ICON_DONE=󰗠
+
 herdr_agents_counts() {
   local json counts
   json=$(cat)
@@ -10,8 +14,8 @@ herdr_agents_counts() {
   fi
   counts=$(printf '%s' "$json" | jq -r '
     ([.result.agents[]? | select(.agent_status=="working")] | length),
-    ([.result.agents[]? | select(.agent_status=="blocked" or .agent_status=="idle")] | length),
-    ([.result.agents[]? | select(.agent_status=="done")] | length)' | paste -sd' ' -)
+    ([.result.agents[]? | select(.agent_status=="blocked")] | length),
+    ([.result.agents[]? | select(.agent_status=="done" or .agent_status=="idle")] | length)' | paste -sd' ' -)
   if [ -z "$counts" ]; then
     printf '0 0 0\n'
     return
@@ -19,21 +23,19 @@ herdr_agents_counts() {
   printf '%s\n' "$counts"
 }
 
+herdr_render() {
+  local run wait done
+  read -r run wait done <<< "$1"
+  printf '%s %s %s %s %s %s\n' "$ICON_RUNNING" "$run" "$ICON_WAITING" "$wait" "$ICON_DONE" "$done"
+}
+
 if [ "${BASH_SOURCE[0]}" = "$0" ]; then
   out=$("${HERDR_BIN:-$HOME/.local/bin/herdr}" agent list 2>/dev/null) || out=""
   if [ -n "$out" ]; then
-    read -r run wait done <<< "$(printf '%s' "$out" | herdr_agents_counts)"
-    run_color=$AGENT_WORKING
-    wait_color=$AGENT_WAITING
-    done_color=$AGENT_DONE
+    render=$(herdr_render "$(printf '%s' "$out" | herdr_agents_counts)")
   else
-    run=0; wait=0; done=0
-    run_color=$AGENT_DONE
-    wait_color=$AGENT_DONE
-    done_color=$AGENT_DONE
+    render=$(herdr_render "0 0 0")
   fi
 
-  sketchybar --set herdr_run  icon.color=$run_color  label="$run"  label.color=$run_color
-  sketchybar --set herdr_wait icon.color=$wait_color label="$wait" label.color=$wait_color
-  sketchybar --set herdr_done icon.color=$done_color label="$done" label.color=$done_color
+  sketchybar --set herdr label="$render" label.color=$WHITE
 fi

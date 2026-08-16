@@ -144,28 +144,13 @@ sketchybar --add item spotify q \
     --subscribe spotify front_app_switched
 
 # -- Herdr agents --
-sketchybar --add item herdr_run q \
-    --set herdr_run \
-    icon= \
-    icon.color=$AGENT_WORKING \
-    label="0" \
-    label.color=$AGENT_WORKING \
+sketchybar --add item herdr q \
+    --set herdr \
+    icon.drawing=off \
+    label=" 0 󰂚 0 󰗠 0" \
+    label.color=$WHITE \
     update_freq=2 \
     script="$PLUGIN_DIR/herdr_agents.sh"
-
-sketchybar --add item herdr_wait q \
-    --set herdr_wait \
-    icon= \
-    icon.color=$AGENT_WAITING \
-    label="0" \
-    label.color=$AGENT_WAITING
-
-sketchybar --add item herdr_done q \
-    --set herdr_done \
-    icon= \
-    icon.color=$AGENT_DONE \
-    label="0" \
-    label.color=$AGENT_DONE
 
 # -- Center Items --
 
