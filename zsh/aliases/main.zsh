@@ -44,3 +44,5 @@ alias apm="cd ~/AutoPerf/; source .venv/bin/activate; ./bash_scripts/monitor.sh"
 alias apd="cd ~/AutoPerf/; source .venv/bin/activate; ./bash_scripts/download.sh"
 alias apl="cd ~/AutoPerf/; source .venv/bin/activate; ./bash_scripts/logs.sh"
 alias ape="cd ~/AutoPerf/; source .venv/bin/activate; ./bash_scripts/ess.sh"
+
+alias firstmate='~/.config/zsh/scripts/firstmate-up.sh'
