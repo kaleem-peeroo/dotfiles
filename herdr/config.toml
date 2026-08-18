@@ -1,3 +1,4 @@
+onboarding = false
 # herdr configuration
 # Place this file at ~/.config/herdr/config.toml
 
@@ -60,7 +61,7 @@ prefix = "ctrl+a"
 detach = "prefix+d"
 # reload_config = "prefix+shift+r"
 # open_notification_target = "prefix+o"
-workspace_picker = "prefix+w"
+workspace_picker = "prefix+i"
 # goto = "prefix+g"
 # new_workspace = "prefix+shift+n"
 # new_worktree = "prefix+shift+g"
