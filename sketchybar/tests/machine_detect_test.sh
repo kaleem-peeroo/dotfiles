@@ -21,6 +21,8 @@ assert_machine() {
 
 assert_machine "MacBook Air" macbook "MacBook Air"
 assert_machine "Kaleem's MacBook Pro" macbook "Kaleem's MacBook Pro"
+assert_machine "Kaleem's Work MacBook Pro" work "Kaleem's Work MacBook Pro"
+assert_machine "Work laptop" work "Work laptop"
 assert_machine "Kaleem's Mac mini" macmini "Kaleem's Mac mini"
 assert_machine "unknown host defaults to macmini" macmini "file-server-01"
 

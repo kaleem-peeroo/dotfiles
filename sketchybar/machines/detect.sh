@@ -3,6 +3,7 @@
 detect_machine() {
   local computer_name="${1:-$(scutil --get ComputerName 2>/dev/null)}"
   case "$computer_name" in
+    *Work*)    printf '%s\n' work ;;
     *MacBook*) printf '%s\n' macbook ;;
     *)         printf '%s\n' macmini ;;
   esac
