@@ -10,7 +10,7 @@ trap 'rm -f "$LOCKFILE"' EXIT
 
 SMC="/Applications/Stats.app/Contents/Resources/smc"
 
-TEMP=$($SMC list -t 2>/dev/null | grep "^\[TCMb\]" | awk '{print $2}' | awk -F. '{print $1}')
+TEMP=$("$SMC" list -t 2>/dev/null | awk '/^\[Tp[0-9A-Za-z]{2}\]/ && $2 ~ /^[0-9]/ { if ($2 > max) max = $2 } END { if (max != "") printf "%.0f", max }')
 
 [ -z "$TEMP" ] && TEMP="--"
 
