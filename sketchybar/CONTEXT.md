@@ -22,3 +22,10 @@ The event AeroSpace triggers via `sketchybar --trigger` when the focused workspa
 
 **unread item**:
 An `Item` that shows the unread-count badge of a dock app (`teams`, `outlook`, `discord`, `slack`); clicking it opens the app.
+
+**Memory Used**:
+macOS's used-RAM figure (what Activity Monitor shows) = App Memory + Wired + Compressed, derived from `vm_stat`. Not the pressure-based `100 − free%`.
+_Avoid_: RAM usage (slang, ambiguous between the two measures)
+
+**memory item**:
+An `Item` (icon `􀫦`) showing live Memory Used as `GB · %`, refreshed every 2s, visual-only (no click).
