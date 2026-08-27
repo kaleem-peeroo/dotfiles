@@ -19,3 +19,6 @@ The leftmost item showing the currently focused application, icon-mapped via `ic
 
 **aerospace_workspace_change**:
 The event AeroSpace triggers via `sketchybar --trigger` when the focused workspace changes; carries `FOCUSED_WORKSPACE`.
+
+**unread item**:
+An `Item` that shows the unread-count badge of a dock app (`teams`, `outlook`, `discord`, `slack`); clicking it opens the app.
