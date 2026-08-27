@@ -55,6 +55,15 @@ sketchybar  --add item teams q \
                     click_script="open -a 'Microsoft Teams'" \
                     script="$PLUGIN_DIR/teams.sh"
 
+sketchybar  --add item slack q \
+            --set   slack \
+                    icon=":slack:" \
+                    icon.font="sketchybar-app-font:Regular:16.0" \
+                    label="0" \
+                    update_freq=5 \
+                    click_script="open -a Slack" \
+                    script="$PLUGIN_DIR/slack.sh"
+
 sketchybar --add item spotify q \
     --set spotify \
     icon.font="sketchybar-app-font:Regular:16.0" \
