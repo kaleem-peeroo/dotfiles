@@ -34,7 +34,8 @@ sketchybar --add item cpu_temp right \
 
 sketchybar  --add item memory right \
             --set   memory \
-                    icon=􀫦\
+                    icon.drawing=off \
+                    label.padding_left=4 \
                     update_freq=2 \
                     script="$PLUGIN_DIR/memory.sh" \
 

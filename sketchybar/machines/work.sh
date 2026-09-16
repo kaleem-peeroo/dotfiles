@@ -1,7 +1,8 @@
 # -- Right Items (left of notch) --
 sketchybar  --add item memory e \
             --set   memory \
-                    icon=􀫦\
+                    icon.drawing=off \
+                    label.padding_left=4 \
                     update_freq=2 \
                     script="$PLUGIN_DIR/memory.sh" \
 

@@ -29,7 +29,7 @@ SAMPLE="$(printf '%s\n' \
   "Pages wired down:                             127923." \
   "Pages occupied by compressor:                  21205.")"
 
-assert_read "real-world sample on 16 GiB machine" "5.8 34" "17179869184" "$SAMPLE"
+assert_read "real-world sample on 16 GiB machine" "6 34" "17179869184" "$SAMPLE"
 
 ZERO="$(printf '%s\n' \
   "$VMSTAT_HEADER" \
@@ -38,7 +38,7 @@ ZERO="$(printf '%s\n' \
   "Pages wired down:                                  0." \
   "Pages occupied by compressor:                      0.")"
 
-assert_read "no usage at all" "0.0 0" "17179869184" "$ZERO"
+assert_read "no usage at all" "0 0" "17179869184" "$ZERO"
 
 FULL="$(printf '%s\n' \
   "$VMSTAT_HEADER" \
@@ -47,7 +47,7 @@ FULL="$(printf '%s\n' \
   "Pages wired down:                                  0." \
   "Pages occupied by compressor:                      0.")"
 
-assert_read "all 16 GiB in use (decimal GB)" "17.2 100" "17179869184" "$FULL"
+assert_read "all 16 GiB in use (decimal GB)" "17 100" "17179869184" "$FULL"
 
 assert_render() {
   local desc="$1" readout="$2" expected="$3"
@@ -61,8 +61,8 @@ assert_render() {
   fi
 }
 
-assert_render "normal usage" "5.8 34" "5.8 GB · 34%"
-assert_render "zero usage" "0.0 0" "0.0 GB · 0%"
+assert_render "normal usage" "6 34" "6 GB 􀫦 34%"
+assert_render "zero usage" "0 0" "0 GB 􀫦 0%"
 
 echo ""
 echo "passed: $pass, failed: $fail"

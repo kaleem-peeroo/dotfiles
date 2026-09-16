@@ -10,14 +10,14 @@ memory_read() {
     /page size of/ { page = $8 }
     END {
       used = (anon - purge + wired + comp) * page
-      printf "%.1f %.0f", used / 1000000000, used * 100 / total
+      printf "%.0f %.0f", used / 1000000000, used * 100 / total
     }'
 }
 
 memory_render() {
   local gb pct
   read -r gb pct <<< "$1"
-  printf '%s GB · %s%%\n' "$gb" "$pct"
+  printf '%s GB 􀫦 %s%%\n' "$gb" "$pct"
 }
 
 if [ "${BASH_SOURCE[0]}" = "$0" ]; then
