@@ -14,7 +14,7 @@ sketchybar --add item cpu_temp e \
 
 sketchybar --add item volume e \
     --set volume \
-    icon=􀊠 \
+    icon=󰕾 \
     script="$PLUGIN_DIR/volume.sh" \
     update_freq=1 \
     --subscribe volume volume_change

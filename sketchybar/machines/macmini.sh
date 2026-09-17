@@ -15,16 +15,10 @@ sketchybar --add item calendar right \
 
 sketchybar --add item volume right \
     --set volume \
-    icon=􀊠 \
+    icon=󰕾 \
     script="$PLUGIN_DIR/volume.sh" \
     update_freq=1 \
     --subscribe volume volume_change
-
-sketchybar --add item cpu right \
-    --set cpu \
-    icon=􀫥\
-    update_freq=2 \
-    script="$PLUGIN_DIR/cpu.sh" \
 
 sketchybar --add item cpu_temp right \
     --set cpu_temp \
