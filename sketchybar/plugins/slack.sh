@@ -1,8 +1,9 @@
 #!/bin/bash
 
 source "$CONFIG_DIR/colors.sh"
+source "$CONFIG_DIR/plugins/dock_badge.sh"
 
-UNREAD=$(lsappinfo info -only StatusLabel com.tinyspeck.slackmacgap | grep -o '"label"="[^"]*"' | cut -d'"' -f4)
+UNREAD=$(dock_badge_count "Slack")
 
 if [ -z "$UNREAD" ] || [ "$UNREAD" = "" ] || [ "$UNREAD" = "0" ]; then
   sketchybar --set $NAME label="0" \
