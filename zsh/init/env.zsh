@@ -4,3 +4,4 @@ export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-20.jdk/Contents/Home"
 export NVM_DIR="$HOME/.nvm"
 export OPENROUTER_API_KEY="$(security find-generic-password -ws 'openrouter-api-key' 2>/dev/null)"
 export GEMINI_API_KEY="$(security find-generic-password -ws 'gemini-api-key' 2>/dev/null)"
+export ANTHROPIC_MODEL=sonnet
