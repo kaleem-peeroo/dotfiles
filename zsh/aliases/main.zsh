@@ -54,3 +54,5 @@ alias claude-top-costs="grep -h '\"totalCostUSD\"' ~/.claude/projects/*/*.jsonl 
   | head -n 10 \
   | awk 'BEGIN { print \"SESSION_ID\tCOST_USD\tCACHE_READ_TOKENS\" } { print }' \
   | column -ts $'\t'"
+
+alias fm-stop="herdr server stop 2>/dev/null; pkill -f \"firstmate|herdr\"; killall claude 2>/dev/null"
