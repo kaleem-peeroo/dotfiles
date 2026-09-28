@@ -46,3 +46,11 @@ alias apl="cd ~/AutoPerf/; source .venv/bin/activate; ./bash_scripts/logs.sh"
 alias ape="cd ~/AutoPerf/; source .venv/bin/activate; ./bash_scripts/ess.sh"
 
 alias firstmate='~/.config/zsh/scripts/firstmate-up.sh'
+#
+# Claude CLI top-10 sessions by USD cost
+alias claude-top-costs="grep -h '\"totalCostUSD\"' ~/.claude/projects/*/*.jsonl 2>/dev/null \
+  | jq -r '[.sessionId, (.totalCostUSD | \"$\" + (.*100 | round / 100 | tostring)), (.modelUsage | to_entries | map(.value.cacheReadInputTokens // 0) | add // 0)] | @tsv' \
+  | sort -t$'\t' -k2,2 -nr \
+  | head -n 10 \
+  | awk 'BEGIN { print \"SESSION_ID\tCOST_USD\tCACHE_READ_TOKENS\" } { print }' \
+  | column -ts $'\t'"
