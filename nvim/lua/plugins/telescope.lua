@@ -18,20 +18,14 @@ return {
         require('telescope').setup {
             defaults = {
                 sorting_strategy = 'ascending',
-                layout_strategy = 'vertical',
+                layout_strategy = 'horizontal',
                 layout_config = {
                     horizontal = {
                         prompt_position = 'top',
-                        preview_width = 0.5,
-                        results_width = 0.5,
+                        preview_width = 0.6,
                         height = 0.8,
+                        width = 0.9,
                         preview_cutoff = 120,
-                    },
-                    vertical = {
-                        mirror = false,
-                        height = 0.9,
-                        width = 0.8,
-                        preview_height = 0.6,
                     },
                 },
             },
