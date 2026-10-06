@@ -21,7 +21,7 @@ The leftmost item showing the currently focused application, icon-mapped via `ic
 The event AeroSpace triggers via `sketchybar --trigger` when the focused workspace changes; carries `FOCUSED_WORKSPACE`.
 
 **unread item**:
-An `Item` that shows the unread-count badge of a dock app (`teams`, `outlook`, `discord`, `slack`); clicking it opens the app.
+An `Item` that shows the unread-count badge of a dock app (`teams`, `discord`, `slack`); clicking it opens the app.
 
 **Memory Used**:
 macOS's used-RAM figure (what Activity Monitor shows) = App Memory + Wired + Compressed, derived from `vm_stat`. Not the pressure-based `100 − free%`.

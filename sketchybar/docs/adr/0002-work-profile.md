@@ -5,7 +5,7 @@ The Work MacBook Pro and the personal MacBook Air both match `*MacBook*` in dete
 ## Decision
 
 - Detection in `machines/detect.sh` gains a `*Work*` clause before `*MacBook*`, so a ComputerName containing "Work" selects the work profile. This laptop was renamed from "Kaleem's MacBook Pro" to "Kaleem's Work MacBook Pro".
-- `machines/work.sh` is the `macbook.sh` layout with the `network` and `discord` items removed; every other item (memory, cpu_temp, volume, battery, calendar, clock, outlook, teams, spotify, herdr) is unchanged.
+- `machines/work.sh` is the `macbook.sh` layout with the `network` and `discord` items removed; every other item (memory, cpu_temp, volume, battery, calendar, clock, teams, spotify, herdr) is unchanged.
 
 ## Considered Options
 

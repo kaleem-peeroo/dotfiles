@@ -20,13 +20,13 @@ assert_counts() {
   fi
 }
 
-assert_counts "three working agents" "3 0 0" '{"result":{"agents":[
+assert_counts "three working agents" "3 0" '{"result":{"agents":[
   {"agent_status":"working"},
   {"agent_status":"working"},
   {"agent_status":"working"}
 ]}}'
 
-assert_counts "working/blocked/idle/done/unknown all present" "1 1 2" '{"result":{"agents":[
+assert_counts "working/blocked/idle/done/unknown: blocked and unknown excluded" "1 2" '{"result":{"agents":[
   {"agent_status":"working"},
   {"agent_status":"blocked"},
   {"agent_status":"idle"},
@@ -34,15 +34,15 @@ assert_counts "working/blocked/idle/done/unknown all present" "1 1 2" '{"result"
   {"agent_status":"unknown"}
 ]}}'
 
-assert_counts "idle alone is finished, not waiting for input" "0 0 1" '{"result":{"agents":[{"agent_status":"idle"}]}}'
+assert_counts "idle alone is finished" "0 1" '{"result":{"agents":[{"agent_status":"idle"}]}}'
 
-assert_counts "done only" "0 0 1" '{"result":{"agents":[{"agent_status":"done"}]}}'
+assert_counts "done only" "0 1" '{"result":{"agents":[{"agent_status":"done"}]}}'
 
-assert_counts "unknown only is excluded" "0 0 0" '{"result":{"agents":[{"agent_status":"unknown"}]}}'
+assert_counts "unknown only is excluded" "0 0" '{"result":{"agents":[{"agent_status":"unknown"}]}}'
 
-assert_counts "no result key" "0 0 0" '{}'
+assert_counts "no result key" "0 0" '{}'
 
-assert_counts "empty input" "0 0 0" ""
+assert_counts "empty input" "0 0" ""
 
 assert_render() {
   local desc="$1" counts="$2" expected="$3"
@@ -56,10 +56,10 @@ assert_render() {
   fi
 }
 
-assert_render "waiting bucket rendered" "2 1 0" " 2 󰂚 1 󰗠 0"
-assert_render "working only" "3 0 0" " 3 󰂚 0 󰗠 0"
-assert_render "done only" "0 0 1" " 0 󰂚 0 󰗠 1"
-assert_render "all zero" "0 0 0" " 0 󰂚 0 󰗠 0"
+assert_render "mixed" "2 1" " 2 󰗠 1"
+assert_render "working only" "3 0" " 3 󰗠 0"
+assert_render "done only" "0 1" " 0 󰗠 1"
+assert_render "all zero" "0 0" " 0 󰗠 0"
 
 echo ""
 echo "passed: $pass, failed: $fail"

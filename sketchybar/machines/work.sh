@@ -26,27 +26,19 @@ sketchybar --add item battery e \
 
 sketchybar --add item calendar e \
     --set calendar \
-    icon=􀉉 \
+    icon.drawing=off \
     label="$(date +'%a %d %b')" \
     update_freq=1 \
     script="$PLUGIN_DIR/calendar.sh"
 
 sketchybar --add item clock e \
     --set clock \
-    icon=􀐫 \
+    icon.drawing=off \
     label="$(date +'%H:%M:%S')" \
     update_freq=1 \
     script="$PLUGIN_DIR/clock.sh"
 
 # -- Right Items (right of notch) --
-sketchybar  --add item outlook q \
-            --set   outlook \
-                    icon=󰴢 \
-                    label="0" \
-                    update_freq=30 \
-                    click_script="open -a 'Microsoft Outlook'" \
-                    script="$PLUGIN_DIR/outlook.sh"
-
 sketchybar  --add item teams q \
             --set   teams \
                     icon=":microsoft_teams:" \
@@ -81,7 +73,10 @@ sketchybar --add item spotify q \
 sketchybar --add item herdr q \
     --set herdr \
     icon.drawing=off \
-    label=" 0 󰂚 0 󰗠 0" \
+    label=" 0 󰗠 0" \
     label.color=$WHITE \
     update_freq=2 \
     script="$PLUGIN_DIR/herdr_agents.sh"
+
+FLEET_POS=q
+source "$CONFIG_DIR/machines/fleet.sh"
