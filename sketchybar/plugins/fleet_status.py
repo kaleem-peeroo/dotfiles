@@ -126,7 +126,7 @@ def row(pr, tag=""):
 def summarize(cache, now):
     prs = cache.get("prs") if isinstance(cache.get("prs"), dict) else None
     workers = cache.get("workers") if isinstance(cache.get("workers"), list) else []
-    ages = [now - cache[k] for k in ("prs_at", "workers_at") if isinstance(cache.get(k), (int, float))]
+    ages = [now - cache[k] for k in ("prs_at",) if isinstance(cache.get(k), (int, float))]
     stale = any(a > STALE for a in ages)
     if prs is None:
         return {"counts": None, "stale": stale, "rows": {}, "updated": ""}

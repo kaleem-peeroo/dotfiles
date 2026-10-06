@@ -29,7 +29,7 @@ fleet_render() {
 
   if [ "$count" = "0" ] && [ "$when_zero" = "hide" ]; then
     # hidden items get no timer ticks, so collapse the item instead of drawing=off
-    sketchybar --set "$NAME" label.drawing=off popup.drawing=off
+    sketchybar --set "$NAME" label.drawing=off popup.drawing=off --set fleet_anchor icon.drawing=off --set fleet background.drawing=off
     return
   fi
 
@@ -39,7 +39,7 @@ fleet_render() {
   elif [ "$count" != "0" ]; then
     shade="$color"
   fi
-  sketchybar --set "$NAME" label.drawing=on label="$count" label.color=$shade
+  sketchybar --set "$NAME" label.drawing=on label="$count" label.color=$shade --set fleet_anchor icon.drawing=on --set fleet background.drawing=on
 
   fleet_popup "$json" "$group" "$stale" "$updated"
 }

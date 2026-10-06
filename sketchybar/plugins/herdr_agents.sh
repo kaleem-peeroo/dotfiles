@@ -1,5 +1,6 @@
 #!/bin/bash
 source "$CONFIG_DIR/colors.sh"
+source "$CONFIG_DIR/plugins/attention.sh"
 
 ICON_RUNNING=
 ICON_DONE=󰗠
@@ -29,11 +30,14 @@ herdr_render() {
 
 if [ "${BASH_SOURCE[0]}" = "$0" ]; then
   out=$("${HERDR_BIN:-$HOME/.local/bin/herdr}" agent list 2>/dev/null) || out=""
-  if [ -n "$out" ]; then
-    render=$(herdr_render "$(printf '%s' "$out" | herdr_agents_counts)")
-  else
-    render=$(herdr_render "0 0")
-  fi
+  counts="0 0"
+  [ -n "$out" ] && counts=$(printf '%s' "$out" | herdr_agents_counts)
+  read -r _ done <<< "$counts"
 
-  sketchybar --set herdr label="$render" label.color=$WHITE
+  # Attention = finished or idle agents waiting for you. Running alone does not need you.
+  if [ "${done:-0}" -gt 0 ]; then
+    attention_show label="$(herdr_render "$counts")" label.color=$WHITE
+  else
+    attention_hide
+  fi
 fi
